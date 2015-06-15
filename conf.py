@@ -1,10 +1,8 @@
 import yaml
-file = "config/config.cfg"
+default_file = "config/config.cfg"
 default_token = ""
-conf = {}
-#assert conf
 
-with open(file) as f:
+with open(default_file) as f:
     conf = yaml.load(f)
 
 print(conf)
