@@ -3,3 +3,4 @@ Flask
 PyYaml
 PyGithub
 icalendar
+multiprocessing
