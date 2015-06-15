@@ -1,9 +1,10 @@
+"""
 from conf import conf
 from git import GithubByUsername,GithubByRepo
 from udd import UddbyEmail
 from direct import DebSummit
 from icalendar import Calendar
-"""
+
 print(conf)
 print(conf['private'][0].get("status",))
 print(type(conf['private'][0].get("status",)))
