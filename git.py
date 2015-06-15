@@ -2,7 +2,6 @@ import github
 import icalendar
 from conf import github_access_token, github_isPrivate
 
-
 class Todo(object):
     conf = {}
     cache = {}
