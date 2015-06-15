@@ -1,0 +1,13 @@
+api_token: <your token here>
+bind_address: 0.0.0.0
+bind_port: 5000
+filter: all
+category: True
+include_private : False
+# To limit the list of repositories, list them here, otherwise
+# all repositories you have access to will be scanned for issues.
+#repositories:
+#- repository: your-user-name/your-project
+#- repository: your-user-name/another-project
+repositories:
+- repository: dpocock/github-icalendar
