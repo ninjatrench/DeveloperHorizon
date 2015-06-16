@@ -4,6 +4,7 @@ from git import GithubByUsername,GithubByRepo
 from udd import UddbyEmail
 from direct import DebSummit
 from icalendar import Calendar
+from bugzilla_search import BugzillAPI
 
 print(conf)
 print(conf['private'][0].get("status",))
@@ -46,5 +47,8 @@ def display(c):
     return c.to_ical().decode().replace("\r\n", "\n").replace("\r\n", "\n")
 
 print(display(cal))
-
+---
+l = ['screen splash', 'ww']
+b = BugzillAPI(l)
+resp = b.main()
 """

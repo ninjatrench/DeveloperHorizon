@@ -6,6 +6,7 @@ from exceptions import InvalidRemoteUrl
 
 
 class DirectUrl(object):
+
     def __init__(self, url=None):
         if url:
             self.url = url
@@ -14,6 +15,8 @@ class DirectUrl(object):
 
     def main(self):
         r = requests.get(self.url)
+        print(r.url)
+
         obj = Calendar.from_ical(r.text)
         data = obj.walk()
         return data[1:]
