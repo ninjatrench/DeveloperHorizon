@@ -68,11 +68,12 @@ class GithubByUsername(Todo):
                     print(repos.name)
                     self.fetch_issues(repo_name=str(i) + '/' + repos.name)
 
-            return self.items
-
         except Exception as e:
             print(e)
             return "Some Error Occurred"
+
+        finally:
+            return self.items
 
     def fetch_issues(self, repo_name):
         print(repo_name)

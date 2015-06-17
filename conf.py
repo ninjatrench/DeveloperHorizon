@@ -21,7 +21,11 @@ bind_address = conf.get('bind_address', False)
 bind_port = conf.get('bind_port', False)
 debconf_url = conf.get('debconf_url', False)
 ubuntu_events_url = conf.get('ubuntu_events_url', False)
+
 bugzilla_base_url = conf.get('bugzilla_base_url', False)
+
+bitbucket_base_url = conf.get('bitbucket_base_url', False)
+bitbucket_api_url = conf.get('bitbucket_api_url', False)
 
 if 'github' in conf:
     if len(conf['github']) == 2:
@@ -39,6 +43,8 @@ try:
     assert dbname
     assert bind_address, bind_port
     assert bugzilla_base_url
+    assert bitbucket_base_url
+    assert bitbucket_api_url
 
 except Exception:
     raise ImproperConfig()
