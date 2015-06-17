@@ -1,14 +1,17 @@
 import github
 import icalendar
 from conf import github_access_token, github_isPrivate
-
+from helper import check_list
 
 class Todo(object):
     conf = {}
     cache = {}
 
     def __init__(self):
-        self.github_client = github.Github(github_access_token, user_agent='Debian-Dashboard')
+        if github_isPrivate:
+            self.github_client = github.Github(github_access_token, user_agent='Developer_Horizon')
+        else:
+            self.github_client = github.Github(user_agent='Developer_Horizon')
 
     def make_uid(self, issue):
         return "%s-%s.issue.github.com" % (issue.number, issue.id)
@@ -57,16 +60,16 @@ class GithubByUsername(Todo):
     items = []
 
     def __init__(self, users):
-        self.users = users
         super().__init__()
+        self.users = check_list(users)
 
-    def main(self):
+    def main(self) -> list:
         try:
-            for i in self.users:
-                user = self.github_client.get_user(i)
-                for repos in user.get_repos():
-                    print(repos.name)
-                    self.fetch_issues(repo_name=str(i) + '/' + repos.name)
+            if self.Flag:
+                for i in self.users:
+                    user = self.github_client.get_user(i)
+                    for repos in user.get_repos():
+                        self.fetch_issues(repo_name=str(i) + '/' + repos.name)
 
         except Exception as e:
             print(e)
@@ -76,16 +79,14 @@ class GithubByUsername(Todo):
             return self.items
 
     def fetch_issues(self, repo_name):
-        print(repo_name)
         repo_name_parts = repo_name.split('/')
         repo_title = repo_name_parts[1]
         repo = self.github_client.get_repo(repo_name)
 
-        if self.Flag:
-            for issue in repo.get_issues(state='open'):
-                todo = self.make_todo(issue, repo_title)
-                if todo:
-                    self.items.append(todo)
+        for issue in repo.get_issues(state='open'):
+            todo = self.make_todo(issue, repo_title)
+            if todo:
+                self.items.append(todo)
 
 
 class GithubByRepo(Todo):
@@ -94,31 +95,30 @@ class GithubByRepo(Todo):
 
     def __init__(self, repos):
         super().__init__()
-        self.repos = repos
-        self.main()
+        self.repos = check_list(repos)
 
-    def main(self):
+    def main(self) -> list:
         try:
-            for i in self.repos:
-                self.fetch_issues_by_repo(repo_name=i)
-
-            return self.items
+            if self.Flag:
+                for i in self.repos:
+                    self.fetch_issues_by_repo(repo_name=i)
 
         except Exception as e:
             print(e)
             return "Some Error Occurred"
 
+        finally:
+            return self.items
+
     def fetch_issues_by_repo(self, repo_name):
-        print(repo_name)
         repo_name_parts = repo_name.split('/')
         repo_title = repo_name_parts[1]
         repo = self.github_client.get_repo(repo_name)
 
-        if self.Flag:
-            for issue in repo.get_issues(state='open'):
-                todo = self.make_todo(issue, repo_title)
-                if todo:
-                    self.items.append(todo)
+        for issue in repo.get_issues(state='open'):
+            todo = self.make_todo(issue, repo_title)
+            if todo:
+                self.items.append(todo)
 
 
 if __name__ == '__main__':

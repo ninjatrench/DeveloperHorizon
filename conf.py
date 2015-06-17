@@ -34,7 +34,8 @@ if 'github' in conf:
     else:
         raise ImproperConfig("Provide Github configurations including private and api_token.")
 else:
-    raise ImproperConfig()
+    github_isPrivate = False
+    github_access_token = False
 
 try:
     assert debconf_url

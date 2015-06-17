@@ -4,9 +4,10 @@ import requests
 import json
 import icalendar
 import multiprocessing
+from helper import check_list
 
 
-def make_summary(issue):
+def make_summary(issue) -> str:
     description = issue.get(":description", None)
     source = issue.get(":source", None)
     if source and description:
@@ -37,7 +38,7 @@ def build(issue):
         return None
 
 
-class UddbyEmail(object):
+class UddByEmail(object):
     Flag = True
     items = []
 
@@ -46,14 +47,20 @@ class UddbyEmail(object):
 
         :type emails: list
         """
-        self.emails = emails
+        self.emails = check_list(emails)
 
-    def main(self):
-        for email in self.emails:
-            item = self.fetch_data(email=email)
-            self.items += item
+    def main(self) -> list:
+        try:
+            if self.Flag:
+                for email in self.emails:
+                    item = self.fetch_data(email=email)
+                    self.items += item
 
-        return self.items
+        except Exception as e:
+            print(e)
+
+        finally:
+            return self.items
 
     def fetch_data(self, email):
         r = requests.get("https://udd.debian.org/dmd/?format=json&email1=%s" % email)

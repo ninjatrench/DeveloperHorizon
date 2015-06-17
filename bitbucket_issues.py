@@ -6,17 +6,17 @@ import icalendar
 import multiprocessing
 import re
 from conf import bitbucket_api_url, bitbucket_base_url
-
+from helper import check_list
 
 def make_url(url):
     if url and type(url) is str:
-        url = url.replace("/1.0/repositories/","").replace("issues","issue")
+        url = url.replace("/1.0/repositories/", "").replace("issues", "issue")
         return str(bitbucket_base_url + url)
     else:
         return bitbucket_base_url
 
-def make_todo(issue):
-    print(issue)
+
+def make_todo(issue) -> icalendar.Todo():
     try:
         todo = icalendar.Todo()
         todo['uid'] = issue.get('local_id', None)
@@ -41,12 +41,14 @@ class BitBucketAPI(object):
     items = []
 
     def __init__(self, repos):
-        self.repos = repos
+        self.repos = check_list(repos)
 
-    def main(self):
+    def main(self) -> list:
         try:
-            for i in self.repos:
-                self.items += self.fetch_issue_by_repo(i)
+            if self.Flag:
+
+                for i in self.repos:
+                    self.items += self.fetch_issue_by_repo(i)
 
         except Exception as e:
             print(e)
@@ -58,15 +60,14 @@ class BitBucketAPI(object):
         repo_name_parts = str(repo_name).split('/')
         user = repo_name_parts[0]
         repo_title = repo_name_parts[1]
-        if self.Flag:
-            r = requests.get(bitbucket_api_url % (user, repo_title))
-            data = json.loads(r.text)
-            issues = data.get('issues', False)
-            if issues:
-                p = multiprocessing.Pool(multiprocessing.cpu_count() * 2)
-                items = p.map(make_todo, issues)
-                p.close()
-                p.join()
-                return items
-            else:
-                return []
+        r = requests.get(bitbucket_api_url % (user, repo_title))
+        data = json.loads(r.text)
+        issues = data.get('issues', False)
+        if issues:
+            p = multiprocessing.Pool(multiprocessing.cpu_count() * 2)
+            items = p.map(make_todo, issues)
+            p.close()
+            p.join()
+            return items
+        else:
+            return []

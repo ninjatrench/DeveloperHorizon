@@ -12,14 +12,13 @@ def mapper(keyword):
     url = bugzilla_base_url + "?ctype=ics&quicksearch=%s"
     keyword = str(keyword).replace(" ", "+")
     r = requests.get(url % keyword)
-    print(r.url)
     obj = Calendar.from_ical(r.text)
     data = obj.walk()
-    print(data[1:])
     return data[1:]
 
 
 class BugzillAPI(object):
+    Flag = True
     items = []
 
     def __init__(self, keywords):
@@ -33,17 +32,23 @@ class BugzillAPI(object):
         else:
             raise InvalidBugzillaSearchKey
 
-    def main(self):
-        p = multiprocessing.Pool(multiprocessing.cpu_count() * 2)
-        x = p.map(mapper, self.keywords)
-        p.close()
-        p.join()
+    def main(self) -> list:
+        try:
+            if self.Flag:
+                p = multiprocessing.Pool(multiprocessing.cpu_count() * 2)
+                x = p.map(mapper, self.keywords)
+                p.close()
+                p.join()
 
-        for i in x:
-            for j in i:
-                self.items.append(j)
+                for i in x:
+                    for j in i:
+                        self.items.append(j)
 
-        return self.items
+        except Exception as e:
+            print(e)
+
+        finally:
+            return self.items
 
 
 if __name__ == '__main__':
