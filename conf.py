@@ -2,6 +2,9 @@ import yaml
 import pkg_resources
 from exceptions import ImproperConfig
 
+Flag = False
+github_token_exists = False
+
 default_config_file = "config/config.cfg"
 dependency = [
     "requests",
@@ -27,32 +30,33 @@ bugzilla_base_url = conf.get('bugzilla_base_url', False)
 bitbucket_base_url = conf.get('bitbucket_base_url', False)
 bitbucket_api_url = conf.get('bitbucket_api_url', False)
 
-if 'github' in conf:
-    if len(conf['github']) == 2:
-        github_isPrivate = conf['github'][0].get("private", False)
-        github_access_token = conf['github'][1].get("api_token")
+github_isPrivate = conf.get('github_is_private', False)
+github_access_token = conf.get('github_access_token', False)
+
+if github_access_token:
+    github_token_exists = True
+
+if github_isPrivate:
+    if github_access_token:
+        Flag = True
     else:
-        raise ImproperConfig("Provide Github configurations including private and api_token.")
-else:
-    github_isPrivate = False
-    github_access_token = False
+        raise ImproperConfig(message="github repository mode is set to private but github_access_token is missing")
 
 try:
     assert debconf_url
     assert ubuntu_events_url
-    assert github_access_token
     assert dbname
     assert bind_address, bind_port
     assert bugzilla_base_url
     assert bitbucket_base_url
     assert bitbucket_api_url
+    Flag = True
 
-except Exception:
-    raise ImproperConfig()
+except Exception as e:
+    print(e)
+    Flag = False
 
 
 if __name__ == '__main__':
-    pass
-#print(conf)
-#print(github_isPrivate)
-#print(github_access_token)
+    if not Flag:
+        raise ImproperConfig()

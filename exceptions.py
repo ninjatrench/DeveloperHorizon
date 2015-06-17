@@ -5,6 +5,8 @@ class ImproperConfig(Exception):
     def __init__(self, message=None, error=None, *args):
         if not message:
             self.message = "Provide all required configuration in config file."
+        else:
+            self.message = message
 
         super().__init__(self.message)
 
@@ -16,6 +18,8 @@ class InvalidRemoteUrl(Exception):
     def __init__(self, message=None, error=None, *args):
         if not message:
             self.message = "Invalid or Blank remote iCal file provided"
+        else:
+            self.message = message
 
         super().__init__(self.message)
 
@@ -27,7 +31,8 @@ class InvalidBugzillaSearchKey(Exception):
     def __init__(self, message=None, error=None, *args):
         if not message:
             self.message = "Invalid or Blank search keyword provided"
-
+        else:
+            self.message = message
         super().__init__(self.message)
 
     def __repr__(self):

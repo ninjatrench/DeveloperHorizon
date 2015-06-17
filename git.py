@@ -1,6 +1,6 @@
 import github
 import icalendar
-from conf import github_access_token, github_isPrivate
+from conf import github_access_token, github_token_exists
 from helper import check_list
 
 class Todo(object):
@@ -8,7 +8,7 @@ class Todo(object):
     cache = {}
 
     def __init__(self):
-        if github_isPrivate:
+        if github_token_exists:
             self.github_client = github.Github(github_access_token, user_agent='Developer_Horizon')
         else:
             self.github_client = github.Github(user_agent='Developer_Horizon')
