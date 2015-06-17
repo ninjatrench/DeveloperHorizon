@@ -1,54 +1,65 @@
-"""
+from bitbucket_issues import BitBucketAPI
 from conf import conf
-from git import GithubByUsername,GithubByRepo
+from git import GithubByUsername, GithubByRepo
 from udd import UddbyEmail
 from direct import DebSummit
-from icalendar import Calendar
 from bugzilla_search import BugzillAPI
 
-print(conf)
-print(conf['private'][0].get("status",))
-print(type(conf['private'][0].get("status",)))
----
 
-r = ['dpocock/github-icalendar',]
+def print_conf():
+    print(conf)
+    print(conf['private'][0].get("status", ))
+    print(type(conf['private'][0].get("status", )))
 
-g = GithubByRepo(r)
-res = g.main()
-print(res)
------
 
-r = ['ninjatrench','dpocock']
-g = GithubByUsername(r)
+def github_by_repo():
+    inputs = ['dpocock/github-icalendar', ]
+    obj = GithubByRepo(inputs)
+    resp = obj.main()
+    print(resp)
+    return resp
 
-res = g.main()
-print(res)
-----
 
-r = ["daniel@pocock.pro","debian-accessibility@lists.debian.org"]
-u = UddbyEmail(r)
-res = u.main()
+def github_by_username():
+    inputs = ['ninjatrench', 'dpocock']
+    obj = GithubByUsername(inputs)
+    resp = obj.main()
+    print(resp)
+    return resp
 
-print(res)
-print(type(res))
-print(len(res))
-----
 
-d = DebSummit()
-items = d.main()
-print(items)
-cal = Calendar()
-cal.add('prodid', '-//danielpocock.com//GithubIssueFeed//')
-cal.add('version', '2.0')
-for i in items:
-    cal.add_component(i)
+def udd_by_email():
+    inputs = ["daniel@pocock.pro", "debian-accessibility@lists.debian.org"]
+    obj = UddbyEmail(inputs)
+    resp = obj.main()
+    print(resp)
+    print(type(resp))
+    print(len(resp))
+    return resp
 
-def display(c):
-    return c.to_ical().decode().replace("\r\n", "\n").replace("\r\n", "\n")
 
-print(display(cal))
----
-l = ['screen splash', 'ww']
-b = BugzillAPI(l)
-resp = b.main()
-"""
+def deb_summit():
+    obj = DebSummit()
+    resp = obj.main()
+    print(resp)
+    return resp
+
+
+def bugzilla_api():
+    inputs = ['screen splash', 'ww']
+    obj = BugzillAPI(inputs)
+    resp = obj.main()
+    print(resp)
+    return resp
+
+
+def bit_bucket():
+    inputs = ["jagguli/aioweb", "jagguli/aioweb"]
+    g = BitBucketAPI(inputs)
+    resp = g.main()
+    print(resp)
+    print(len(resp))
+    return resp
+
+if __name__ == '__main__':
+    pass
