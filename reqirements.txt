@@ -1,6 +1,5 @@
 requests
 Flask
-Flask-Classy
 multiprocessing
 PyYaml
 PyGithub

@@ -1,0 +1,14 @@
+URL : http://localhost:5000/add
+Content-Type application/json
+
+{
+	"bitbucket" : ["jagguli/aioweb"],
+	"github_by_user" : ["ninjatrench", "dpocock"],
+	"github_by_repo" : ["username/reponame"],
+ 	"udd" : ["daniel@pocock.pro"],
+	"bugzilla" : ["screen splash", "ww"],
+	"ubuntu_events" : "True",
+	"deb_summit" : "True",
+	"do_save" : "True"
+
+}

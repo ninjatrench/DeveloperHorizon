@@ -1,7 +1,7 @@
 import github
 import icalendar
-from conf import github_access_token, github_token_exists
-from helper import check_list
+from controller.conf import github_access_token, github_token_exists
+from controller.helper import check_list
 
 class Todo(object):
     conf = {}

@@ -1,8 +1,8 @@
 __author__ = 'harsh'
 import requests
 from icalendar import Calendar
-from conf import debconf_url, ubuntu_events_url
-from exceptions import InvalidRemoteUrl
+from controller.conf import debconf_url, ubuntu_events_url
+from controller.exceptions import InvalidRemoteUrl
 
 
 class DirectUrl(object):

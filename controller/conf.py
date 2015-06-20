@@ -1,15 +1,13 @@
 import yaml
 import pkg_resources
-from exceptions import ImproperConfig
-
+from controller.exceptions import ImproperConfig
 Flag = False
 github_token_exists = False
 
-default_config_file = "config/config.cfg"
+default_config_file = "/home/harsh/Desktop/dashboard/config/config.cfg"
 dependency = [
     "requests",
     "Flask",
-    "Flask-Classy",
     "PyYaml",
     "PyGithub",
     "icalendar"

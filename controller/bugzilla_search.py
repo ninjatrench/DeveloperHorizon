@@ -1,10 +1,10 @@
 __author__ = 'harsh'
 
-from conf import bugzilla_base_url
+from .conf import bugzilla_base_url
 import multiprocessing
 from icalendar import Calendar
-from exceptions import InvalidBugzillaSearchKey
-from helper import list_of_strings
+from controller.exceptions import InvalidBugzillaSearchKey
+from controller.helper import list_of_strings
 import requests
 
 

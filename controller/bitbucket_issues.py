@@ -4,9 +4,9 @@ import requests
 import json
 import icalendar
 import multiprocessing
-import re
-from conf import bitbucket_api_url, bitbucket_base_url
-from helper import check_list
+from controller.conf import bitbucket_api_url, bitbucket_base_url
+from controller.helper import check_list
+
 
 def make_url(url):
     if url and type(url) is str:

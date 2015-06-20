@@ -4,7 +4,7 @@ import requests
 import json
 import icalendar
 import multiprocessing
-from helper import check_list
+from controller.helper import check_list
 
 
 def make_summary(issue) -> str:

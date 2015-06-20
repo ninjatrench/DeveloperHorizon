@@ -1,11 +1,11 @@
-from bitbucket_issues import BitBucketAPI
-from conf import conf
-from git import GithubByUsername, GithubByRepo
-from udd import UddByEmail
-from direct import DebSummit, UbuntuEvents
-from bugzilla_search import BugzillAPI
-from time import time
-from helper import CalendarBuilder
+from controller.bitbucket_issues import BitBucketAPI
+from controller.conf import conf
+from controller.git import GithubByUsername, GithubByRepo
+from controller.udd import UddByEmail
+from controller.direct import DebSummit, UbuntuEvents
+from controller.bugzilla_search import BugzillAPI
+from controller.helper import CalendarBuilder
+
 
 def print_conf():
     print(conf)
@@ -14,10 +14,10 @@ def print_conf():
 
 
 def github_by_repo():
-    inputs = ['dpocock/github-icalendar', 'ninjatrench/DeveloperHorizon' ]
+    inputs = ['dpocock/github-icalendar', 'ninjatrench/DeveloperHorizon']
     obj = GithubByRepo(inputs)
     resp = obj.main()
-    #print(resp)
+    # print(resp)
     return resp
 
 
@@ -25,7 +25,7 @@ def github_by_username():
     inputs = ['ninjatrench', 'dpocock']
     obj = GithubByUsername(inputs)
     resp = obj.main()
-    #print(resp)
+    # print(resp)
     return resp
 
 
@@ -33,23 +33,23 @@ def udd_by_email():
     inputs = ["daniel@pocock.pro", "debian-accessibility@lists.debian.org"]
     obj = UddByEmail(inputs)
     resp = obj.main()
-    #print(resp)
-    #print(type(resp))
-    #print(len(resp))
+    # print(resp)
+    # print(type(resp))
+    # print(len(resp))
     return resp
 
 
 def ubuntu_events():
     obj = UbuntuEvents()
     resp = obj.main()
-    #print(resp)
+    # print(resp)
     return resp
 
 
 def deb_summit():
     obj = DebSummit()
     resp = obj.main()
-    #print(resp)
+    # print(resp)
     return resp
 
 
@@ -57,7 +57,7 @@ def bugzilla_api():
     inputs = ['screen splash', 'ww']
     obj = BugzillAPI(inputs)
     resp = obj.main()
-    #print(resp)
+    # print(resp)
     return resp
 
 
@@ -65,13 +65,13 @@ def bit_bucket():
     inputs = ["jagguli/aioweb", "jagguli/aioweb"]
     g = BitBucketAPI(inputs)
     resp = g.main()
-    #print(resp)
-    #print(len(resp))
+    # print(resp)
+    # print(len(resp))
     return resp
 
 
 def test_build_all():
-    #print_conf()
+    # print_conf()
     items = []
 
     items.append(github_by_username())
@@ -86,13 +86,15 @@ def test_build_all():
     print("Started Building")
     resp = c.main()
     if resp:
-        #print(resp)
+        # print(resp)
         with open('test.ical', 'w') as f:
             f.write(resp)
 
     print("Finished")
 
+
 if __name__ == '__main__':
-    #test_build_all()
+    # test_build_all()
     import timeit
-    print(timeit.timeit("test_build_all()", number=1,setup="from __main__ import test_build_all"))
+
+    print(timeit.timeit("test_build_all()", number=1, setup="from __main__ import test_build_all"))
