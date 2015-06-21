@@ -26,6 +26,7 @@ class CalendarBuilder(object):
     cal = Calendar()
 
     def __init__(self, items):
+        self.items = []
         self.items = check_list(items)
 
     def display(self) -> str:
@@ -70,7 +71,6 @@ class FlaskError(object):
 class SaveSession(object):
     def __init__(self, **kwargs):
         try:
-            print(kwargs)
             s = StoreSession()
             self.id = generate_uid()
 

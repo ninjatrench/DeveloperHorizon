@@ -14,6 +14,7 @@ class DirectUrl(object):
             raise InvalidRemoteUrl()
 
     def main(self):
+        data = []
         r = requests.get(self.url)
         obj = Calendar.from_ical(r.text)
         data = obj.walk()

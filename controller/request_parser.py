@@ -24,13 +24,16 @@ class AddEntry(object):
     do_save = False
 
     def __init__(self, request) -> None:
+        del self.items[:]
+        """
+        FIXME : dual entry problem
+        """
         self.request = request
         self.parse()
 
     def get_resp(self) -> Response:
         try:
             if self.do_save:
-                print("in")
                 session_id = SaveSession(github_by_repo=self.github_by_repo,
                                          github_by_user=self.github_by_user,
                                          bitbucket=self.bitbucket,
@@ -45,7 +48,8 @@ class AddEntry(object):
 
             else:
                 self.build_resp()
-                resp = CalendarBuilder(self.items).main()
+                r = CalendarBuilder(self.items)
+                resp = r.main()
                 response = make_response(resp)
                 response.headers["Content-Disposition"] = "attachment; filename=calendar.ical"
                 return response
@@ -90,7 +94,6 @@ class AddEntry(object):
 
 
 class GetEntry(object):
-
     def __init__(self, session_id):
         s = StoreSession()
         if s.exists(session_id):
@@ -98,18 +101,20 @@ class GetEntry(object):
                 resp = s.get(key=session_id)
                 resp['session_id'] = session_id
                 self.response = Response(response=json.dumps(resp), status=200,
-                                content_type='application/json',
-                                mimetype="application/json")
+                                         content_type='application/json',
+                                         mimetype="application/json")
 
             except Exception as e:
                 print(e)
-                self.response = Response(response=json.dumps(FlaskError().get_error()), status=500, content_type='application/json',
-                            mimetype="application/json")
+                self.response = Response(response=json.dumps(FlaskError().get_error()), status=500,
+                                         content_type='application/json',
+                                         mimetype="application/json")
 
         else:
-            self.response = Response(response=FlaskError("Specified Session does not found.").get_error(), status=404,
-                            content_type='application/json',
-                            mimetype="application/json")
+            self.response = Response(response=json.dumps(FlaskError("Specified session_id was not found.").get_error()),
+                                     status=404,
+                                     content_type='application/json',
+                                     mimetype="application/json")
 
     def get_resp(self) -> Response:
         return self.response
@@ -133,7 +138,7 @@ class GetDownload(object):
             return response
 
         else:
-            return Response(response=FlaskError("Specified Session does not found.").get_error(), status=404,
+            return Response(response=FlaskError("Specified session_id was not found.").get_error(), status=404,
                             content_type='application/json',
                             mimetype="application/json")
 
