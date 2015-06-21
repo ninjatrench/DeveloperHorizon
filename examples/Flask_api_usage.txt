@@ -1,14 +1,91 @@
+1.
+Adding a new session.
 URL : http://localhost:5000/add
+Set Header:
 Content-Type application/json
 
-{
-	"bitbucket" : ["jagguli/aioweb"],
-	"github_by_user" : ["ninjatrench", "dpocock"],
-	"github_by_repo" : ["username/reponame"],
- 	"udd" : ["daniel@pocock.pro"],
-	"bugzilla" : ["screen splash", "ww"],
-	"ubuntu_events" : "True",
-	"deb_summit" : "True",
-	"do_save" : "True"
+*   if do_save is set then it will store this configuration of data sources against a Session_id
+    which will be returned in json format.
 
-}
+    Request : POST
+    {
+        "github_by_user" : ["ninjatrench", "irl"],
+        "github_by_repo" : ["dpocock/github-icalendar"],
+        "bitbucket" : ["jagguli/aioweb"],
+        "bugzilla" : ["screen splash", "ww"],
+        "direct" : "http://<direct_ical_url>/",
+        "ubuntu_events" : "True",
+        "deb_summit" : "True",
+        "udd" : ["daniel@pocock.pro"],
+        "do_save" : "True"
+
+    }
+
+    Response:
+    {
+        "Session_id": "<session_id> string of alphanumeric characters of length 12",
+        "Success": true
+    }
+
+*   If do_save is not set, it will return a downloadable ical file.
+    Request : POST
+    {
+        "github_by_user" : ["ninjatrench", "irl"],
+        "github_by_repo" : ["dpocock/github-icalendar"],
+        "bitbucket" : ["jagguli/aioweb"],
+        "bugzilla" : ["screen splash", "ww"],
+        "direct" : "http://<direct_ical_url>/",
+        "ubuntu_events" : "True",
+        "deb_summit" : "True",
+        "udd" : ["daniel@pocock.pro"],
+    }
+
+2.
+Retriveing Session details via session_id
+URL : http://localhost:5000/get/<session_id>
+
+Request : GET
+
+*   If key exists then it will be returned in JSON format.
+   Response:
+    {
+        "direct": "http://<direct_ical_url>/",
+        "deb_summit": "True",
+        "github_by_repo": [
+            "dpocock/github-icalendar"
+        ],
+        "session_id": "QuISXHcwAAna",
+        "bugzilla": [
+            "screen splash",
+            "ww"
+        ],
+        "udd": [
+            "daniel@pocock.pro"
+        ],
+        "bitbucket": [
+            "jagguli/aioweb"
+        ],
+        "ubuntu_events": "True",
+        "github_by_user": [
+            "ninjatrench",
+            "irl"
+        ]
+    }
+
+*   If provided session_id does not exist then it returns corresponding message
+    Response:
+    {
+    "Message": "Specified Session does not found.",
+    "Error": true
+    }
+
+3. Directly downloading ical file from session_id
+It usually takes about a minute to generate response, if all data sources are selected.
+(AJAX calls and jquery calls are responded as well)
+
+URL : http://localhost:5000/download/<session_id>
+Request GET
+
+Response : Downloadable ical file.
+
+
