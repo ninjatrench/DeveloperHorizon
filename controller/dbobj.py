@@ -79,6 +79,3 @@ else:
                 return self.data.get(key, default)
     else:
         raise ImproperConfig(message="Provide json_dbname or sqlalchemy_engine in config file.")
-
-if __name__ == '__main__':
-    s = StoreSession()
