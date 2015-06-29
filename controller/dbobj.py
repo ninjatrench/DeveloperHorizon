@@ -21,7 +21,7 @@ if use_sql:
             pass
 
         def exists(self, key):
-            r = self.session.query(DashboardDB).filter(id=key)
+            r = self.session.query(DashboardDB).filter(DashboardDB.id == key)
             if r:
                 return True
             else:
@@ -36,8 +36,11 @@ if use_sql:
                 raise ExpectedDictAsInput()
 
         def get(self, key, default=False):
-            # CODE PENDING
-            pass
+            r = self.session.query(DashboardDB).filter(DashboardDB.id == key)
+            if r:
+                return r.data
+            else:
+                return default
 
 
 else:
