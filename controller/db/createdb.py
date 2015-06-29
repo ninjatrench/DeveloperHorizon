@@ -13,7 +13,7 @@ if use_sql:
     class DashboardDB(Base):
         __tablename__ = 'dashboard'
         id = Column(TEXT, primary_key=False)
-        name = Column(TEXT, nullable=False)
+        data = Column(TEXT, nullable=False)
 
     engine = create_engine(str(sqlalchemy_engine))
 
