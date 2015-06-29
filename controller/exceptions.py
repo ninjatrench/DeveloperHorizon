@@ -1,6 +1,19 @@
 __author__ = 'harsh'
 
 
+class ExpectedDictAsInput(Exception):
+    def __init__(self, message=None, error=None, *args):
+        if not message:
+            self.message = "Dictionary required as input"
+        else:
+            self.message = message
+
+        super().__init__(self.message)
+
+    def __repr__(self):
+        return self.message
+
+
 class ImproperConfig(Exception):
     def __init__(self, message=None, error=None, *args):
         if not message:
