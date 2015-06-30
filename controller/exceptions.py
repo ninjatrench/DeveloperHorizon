@@ -1,6 +1,5 @@
 __author__ = 'harsh'
 
-
 class ExpectedDictAsInput(Exception):
     def __init__(self, message=None, error=None, *args):
         if not message:
