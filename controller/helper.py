@@ -1,9 +1,9 @@
 __author__ = 'harsh'
-from icalendar import Calendar
-from controller.exceptions import ExpectedListAsInput
 import string
 import random
-from controller.dbobj import StoreSession
+from icalendar import Calendar
+from controller.exceptions import ExpectedListAsInput
+from controller.db.dbobj import StoreSession
 
 list_of_strings = lambda items: [key for key in items if type(key) is str]
 list_unique_items = lambda items: set(items)

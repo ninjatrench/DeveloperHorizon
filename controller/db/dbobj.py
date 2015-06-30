@@ -3,11 +3,10 @@ from controller.conf import use_sql, use_json
 from controller.exceptions import ImproperConfig, ExpectedDictAsInput
 from controller.conf import json_dbname
 
-
 if use_sql:
     from sqlalchemy import create_engine
     from sqlalchemy.orm import sessionmaker
-
+    from sqlalchemy.orm.exc import NoResultFound
     from controller.db.createdb import DashboardDB, Base, sqlalchemy_engine
 
     class StoreSession(object):
@@ -22,14 +21,15 @@ if use_sql:
 
         def exists(self, key):
             r = self.session.query(DashboardDB).filter(DashboardDB.id == key)
-            if r:
+            try:
+                r.one()
                 return True
-            else:
+            except NoResultFound:
                 return False
 
         def add(self, key, value):
             if type(value) is dict:
-                new_entry = DashboardDB(id=key, value=json.dumps(value))
+                new_entry = DashboardDB(id=str(key), data=json.dumps(value))
                 self.session.add(new_entry)
                 self.session.commit()
             else:
@@ -37,11 +37,13 @@ if use_sql:
 
         def get(self, key, default=False):
             r = self.session.query(DashboardDB).filter(DashboardDB.id == key)
-            if r:
-                return r.data
-            else:
-                return default
 
+            try:
+                resp = r.one()
+                return json.loads(resp.data)
+
+            except NoResultFound:
+                return default
 
 else:
     if use_json:

@@ -1,13 +1,13 @@
 __author__ = 'harsh'
-from flask import Response, make_response
 import json
+from flask import Response, make_response
 from controller.bugzilla_search import BugzillAPI
 from controller.bitbucket_issues import BitBucketAPI
 from controller.direct import DirectUrl, DebSummit, UbuntuEvents
 from controller.git import GithubByRepo, GithubByUsername
 from controller.udd import UddByEmail
 from controller.helper import CalendarBuilder, FlaskError, SaveSession
-from controller.dbobj import StoreSession
+from controller.db.dbobj import StoreSession
 
 
 class AddEntry(object):
