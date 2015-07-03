@@ -1,10 +1,13 @@
 __author__ = 'harsh'
 import json
+import gc
 from flask import Flask, request, Response, abort, url_for
 from controller.conf import bind_address, bind_port
 from controller.request_parser import AddEntry, GetEntry,GetDownload
 from controller.helper import FlaskError
-import gc
+from controller.deb_li_api import json_api
+
+
 app = Flask(__name__, static_url_path='')
 
 
@@ -56,6 +59,10 @@ def download(session_id):
                         status=400, content_type='application/json',
                         mimetype="application/json")
 
+
+@app.route('/shorten/<target>', methods=['GET'])
+def shorten_url(target):
+    return json_api(url=target)
 
 if __name__ == '__main__':
     gc.enable()

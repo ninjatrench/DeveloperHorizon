@@ -35,6 +35,9 @@ github_access_token = conf.get('github_access_token', False)
 json_dbname = conf.get('json_dbname', False)
 sqlalchemy_engine = conf.get('sqlalchemy_engine',False)
 
+deb_li_base_url = conf.get('deb_li_base_url', False)
+deb_li_api_url = conf.get('deb_li_api_url', False)
+
 if sqlalchemy_engine:
     use_sql = True
 
@@ -54,6 +57,11 @@ if use_json or use_sql:
     pass
 else:
     raise ImproperConfig(message="Provide json_dbname or sqlalchemy_engine in config file.")
+
+if deb_li_api_url and deb_li_base_url:
+    pass
+else:
+    raise ImproperConfig(message="Provide valid 'deb_li_base_url' and  'deb_li_api_url'")
 
 try:
     assert debconf_url
