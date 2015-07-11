@@ -1,0 +1,71 @@
+<div ng-controller='LoadSession'>
+
+    <div class=row ng-show=showLoadSession>
+        <div class='center-block'>
+            <div class='col-xs-4'>
+                <input type='text' class='form-control' id='sid' ng-model="sid" placeholder='Enter your sessionID'>
+            </div>
+            <button type='button' class='btn btn-primary' ng-click='go()'>Go</button>
+        </div>
+
+    </div>
+
+    <div class="loading" ng-show="loading">
+        <!-- credits : "http://tobiasahlin.com/spinkit/"
+         License :The MIT License (MIT)
+         Copyright (c) 2014 Tobias Ahlin
+         https://github.com/tobiasahlin/SpinKit/blob/master/LICENSE
+         -->
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>'
+
+
+    <div class=row ng-show=showLoadedSession>
+        <rd-widget>
+            <rd-widget-header icon=fa-tasks title="Session Details">
+                <input type=text placeholder=Search class="form-control input-sm" ng-model="key" ng-init="key=">
+            </rd-widget-header>
+            <rd-widget-body classes='medium no-padding'>
+                <div class=table-responsive>
+                    <table class=table>
+                        <thead>
+                        <tr>
+                            <th class=text-center>ID</th>
+                            <th>Username</th>
+                            <th>Role</th>
+                            <th>Account</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class=text-center>1</td>
+                            <td>Joe Bloggs</td>
+                            <td>Super Admin</td>
+                            <td>AZ23045</td>
+                        </tr>
+                        <tr>
+                            <td class=text-center>2</td>
+                            <td>Timothy Hernandez</td>
+                            <td>Admin</td>
+                            <td>AU24783</td>
+                        </tr>
+                        <tr>
+                            <td class=text-center>3</td>
+                            <td>Joe Bickham</td>
+                            <td>User</td>
+                            <td>AM23781</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </rd-widget-body>
+            <rd-widget-footer>
+
+                <div class=clearfix></div>
+            </rd-widget-footer>
+        </rd-widget>
+
+
+    </div>
+</div>

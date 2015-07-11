@@ -1,0 +1,224 @@
+<div class="row alerts-container" data-ng-controller=AlertsCtrl data-ng-show=alerts.length>
+    <div class=col-xs-12>
+        <alert data-ng-repeat="alert in alerts" type={{alert.type}} close=closeAlert($index)>
+            {{alert.msg}}
+        </alert>
+    </div>
+</div>
+
+<div ng-controller='LoadDashBoard'>
+
+    <div class=message ng-show="showerror">{{msg}}
+        <span class=error>{{errorMsg}}</span>
+    </div>
+
+    <div class=row>
+
+        <div class=col-lg-6>
+                <rd-widget>
+                    <rd-widget-header icon=fa-users title="Github by Users">
+                        <button class="btn btn-sm btn-info" ng-click="addGithubByUser()">
+                            <i class="fa fa-plus"></i>Add
+                        </button>
+                        <button class="btn btn-sm btn-danger" ng-click="removeGithubByUser()">
+                            <i class="fa fa-minus"></i>Remove
+                        </button>
+                    </rd-widget-header>
+                    <rd-widget-body classes="medium no-padding">
+
+                        <fieldset  data-ng-repeat="choice in github_by_user">
+                                <div class="col-lg-4">
+                                    <label for="username">
+                                http://Github.com/
+                                    </label>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" ng-model="choice.data" name="username" placeholder="Enter the github username">
+
+                                </div>
+                                <span>/</span>
+                        </fieldset>
+
+
+                        <div id="choicesDisplay">
+                            {{ github_by_user }}
+                        </div>
+
+
+                    </rd-widget-body>
+                    <rd-widget></rd-widget>
+                </rd-widget>
+        </div>
+        <div class=col-lg-6>
+                <rd-widget>
+                    <rd-widget-header icon=fa-github  title="Github by repo">
+                        <button class="btn btn-sm btn-info"><i class="fa fa-plus"></i>Add</button>
+                        <button class="btn btn-sm btn-danger" ng-click="removeGithubByUser()">
+                            <i class="fa fa-minus"></i>Remove
+                        </button>
+                    </rd-widget-header>
+                    <rd-widget-body classes="medium no-padding">
+
+                        <fieldset  data-ng-repeat="choice in github_by_user">
+                            <div class="col-lg-4">
+                                <label for="username">
+                                    http://Github.com/
+                                </label>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" ng-model="choice.data" name="username" placeholder="Enter the github username">
+
+                            </div>
+                            <span>/</span>
+                        </fieldset>
+
+
+                        <div id="choicesDisplay">
+                            {{ github_by_user }}
+                        </div>
+
+                    </rd-widget-body>
+                </rd-widget>
+
+        </div>
+    </div>
+
+    <div class=row>
+
+        <div class=col-lg-6>
+            <rd-widget>
+                <rd-widget-header icon=fa-bitbucket title="Bitbucket">
+                    <button class="btn btn-sm btn-info"><i class="fa fa-plus"></i>Add</button>
+                    <button class="btn btn-sm btn-danger" ng-click="removeGithubByUser()">
+                        <i class="fa fa-minus"></i>Remove
+                    </button>
+                </rd-widget-header>
+                <rd-widget-body classes="medium no-padding">
+
+
+
+                </rd-widget-body>
+                <rd-widget></rd-widget>
+            </rd-widget>
+        </div>
+
+        <div class=col-lg-6>
+            <rd-widget>
+                <rd-widget-header icon=fa-bug  title="Bugzilla">
+                    <button class="btn btn-sm btn-info"><i class="fa fa-plus"></i>Add</button>
+                    <button class="btn btn-sm btn-danger" ng-click="removeGithubByUser()">
+                        <i class="fa fa-minus"></i>Remove
+                    </button>
+                </rd-widget-header>
+                <rd-widget-body>
+
+                </rd-widget-body>
+            </rd-widget>
+
+        </div>
+    </div>
+
+    <div class=row>
+
+        <div class=col-lg-6>
+            <rd-widget>
+                <rd-widget-header icon=fa-users title="UDD">
+                    <button class="btn btn-sm btn-info"><i class="fa fa-plus"></i>Add</button>
+                    <button class="btn btn-sm btn-danger" ng-click="removeGithubByUser()">
+                        <i class="fa fa-minus"></i>Remove
+                    </button>
+                </rd-widget-header>
+                <rd-widget-body classes="medium no-padding">
+
+
+
+                </rd-widget-body>
+                <rd-widget></rd-widget>
+            </rd-widget>
+        </div>
+
+        <div class=col-lg-6>
+            <rd-widget>
+                <rd-widget-header icon=fa-users  title=Extras>
+                    <button class="btn btn-sm btn-info"><i class="fa fa-plus"></i>Add</button>
+                    <button class="btn btn-sm btn-danger" ng-click="removeGithubByUser()">
+                        <i class="fa fa-minus"></i>Remove
+                    </button>
+                </rd-widget-header>
+                <rd-widget-body>
+                    <div class=message>This is a standard message
+                        <span class=error> error message!</span></div>
+                </rd-widget-body>
+            </rd-widget>
+
+        </div>
+    </div>
+
+    <div class=row>
+        <div class=col-lg-6>
+            <rd-widget>
+                <rd-widget-header icon=fa-rocket title="Special Events">
+                </rd-widget-header>
+                <rd-widget-body>
+                    <div class="widget-icon green pull-left"><i class="fa fa-users"></i></div>
+                    <div class=comment>Ubuntu Loco Events</div>
+                    <div class="[ form-group ]">
+                        <input type="checkbox" name="ubuntu" id="ubuntu" ng-model="ubuntu" ng-click="updateUbuntu()" autocomplete="off" />
+                        <div class="[ btn-group ]">
+                            <label for="ubuntu" class="[ btn btn-info ]">
+                                <span class="[ glyphicon glyphicon-ok ]"></span>
+                                <span> </span>
+                            </label>
+                            <label for="ubuntu" class="[ btn btn-default active ]">
+                                Add event
+                            </label>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="widget-icon blue pull-left"><i class="fa fa-support"></i></div>
+                    <div class=comment>Debian Summit</div>
+                    <div class="[ form-group ]">
+                        <input type="checkbox" name="debian" id="debian" ng-model="debian" ng-click="updateDebian()" autocomplete="off" />
+                        <div class="[ btn-group ]">
+                            <label for="debian" class="[ btn btn-info ]">
+                                <span class="[ glyphicon glyphicon-ok ]"></span>
+                                <span> </span>
+                            </label>
+                            <label for="debian" class="[ btn btn-default active ]">
+                                Add event
+                            </label>
+                        </div>
+                    </div>
+
+                </rd-widget-body>
+            </rd-widget>
+        </div>
+
+
+
+        <div class=col-lg-6>
+
+                <rd-widget>
+                    <rd-widget-header icon=fa-download  title="Download and save">
+                        </rd-widget-header>
+                    <rd-widget-body>
+                        <div class=comment>
+                            Download this without saving session
+                        </div>
+                        <button type="button" class="btn btn-warning">Download</button>
+                        <hr>
+                        <div class=comment>
+                            Generate sessionID and permanent url for this config
+                        </div><br>
+                        <button type="button" class="btn btn-success">Generate</button>
+                    </rd-widget-body>
+                </rd-widget>
+
+        </div>
+
+
+
+    </div>
+
+
+</div>
