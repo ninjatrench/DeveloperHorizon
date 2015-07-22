@@ -10,6 +10,7 @@ from controller.helper import CalendarBuilder, FlaskError, SaveSession
 from controller.db.dbobj import StoreSession
 
 
+# noinspection PyBroadException
 class AddEntry(object):
     github_by_repo = []
     github_by_user = []
@@ -55,6 +56,7 @@ class AddEntry(object):
                 return response
 
         except Exception as e:
+            print(e)
             return Response(response=json.dumps(FlaskError().get_error()), status=500, content_type='application/json',
                             mimetype="application/json")
 
@@ -65,6 +67,12 @@ class AddEntry(object):
             self.bitbucket = self.request.get("bitbucket", False)
             self.bugzilla = self.request.get("bugzilla", False)
             self.direct = self.request.get("direct", False)
+            """
+            Dirty Fix for blank remote iCal URL
+            """
+            if not self.direct:
+                self.direct = False
+
             self.ubuntu_events = self.request.get("ubuntu_events", False)
             self.deb_summit = self.request.get("deb_summit", False)
             self.udd = self.request.get("udd", False)

@@ -24,19 +24,18 @@
                             <i class="fa fa-minus"></i>Remove
                         </button>
                     </rd-widget-header>
+
                     <rd-widget-body classes="medium no-padding">
+                                    <span class="medium">
+                                        Enter the Username of Github Account and issues in all repositories of that user will be aggregated
+                                    </span>
 
                         <fieldset  data-ng-repeat="choice in github_by_user">
-                                <div class="col-lg-4">
-                                    <label for="username">
-                                http://Github.com/
-                                    </label>
-                                </div>
-                                <div class="col-lg-6">
-                                    <input type="text" class="form-control" ng-model="choice.data" name="username" placeholder="Enter the github username">
 
+                                <div class="col-lg-7">
+                                    <input type="text" class="form-control" ng-model="choice.data" name="username" placeholder="github.com/UserName">
                                 </div>
-                                <span>/</span>
+
                         </fieldset>
 
 
@@ -52,34 +51,28 @@
         <div class=col-lg-6>
                 <rd-widget>
                     <rd-widget-header icon=fa-github  title="Github by repo">
-                        <button class="btn btn-sm btn-info"><i class="fa fa-plus"></i>Add</button>
-                        <button class="btn btn-sm btn-danger" ng-click="removeGithubByUser()">
+                        <button class="btn btn-sm btn-info" ng-click="addGithubByRepo()">
+                            <i class="fa fa-plus"></i>Add</button>
+                        <button class="btn btn-sm btn-danger" ng-click="removeGithubByRepo()">
                             <i class="fa fa-minus"></i>Remove
                         </button>
                     </rd-widget-header>
                     <rd-widget-body classes="medium no-padding">
+                        <span class="medium">
+                        Enter the of Github Repository and all open issues of that repository will be aggregated
+                        </span>
 
-                        <fieldset  data-ng-repeat="choice in github_by_user">
-                            <div class="col-lg-4">
-                                <label for="username">
-                                    http://Github.com/
-                                </label>
-                            </div>
-                            <div class="col-lg-6">
+                        <fieldset  data-ng-repeat="choice in github_by_repo">
+                            <div class="col-lg-10">
                                 <input type="text" class="form-control" ng-model="choice.data" name="username" placeholder="Enter the github username">
-
                             </div>
-                            <span>/</span>
                         </fieldset>
-
-
                         <div id="choicesDisplay">
-                            {{ github_by_user }}
+                            {{ github_by_repo }}
                         </div>
 
                     </rd-widget-body>
                 </rd-widget>
-
         </div>
     </div>
 
@@ -88,15 +81,26 @@
         <div class=col-lg-6>
             <rd-widget>
                 <rd-widget-header icon=fa-bitbucket title="Bitbucket">
-                    <button class="btn btn-sm btn-info"><i class="fa fa-plus"></i>Add</button>
-                    <button class="btn btn-sm btn-danger" ng-click="removeGithubByUser()">
+                    <button class="btn btn-sm btn-info" ng-click="addBitbucket()">
+                        <i class="fa fa-plus"></i>Add</button>
+                    <button class="btn btn-sm btn-danger" ng-click="removeBitbucket()">
                         <i class="fa fa-minus"></i>Remove
                     </button>
                 </rd-widget-header>
                 <rd-widget-body classes="medium no-padding">
+                          <span>
+                               Enter Bitbucket
+                          </span>
+                                <fieldset  data-ng-repeat="choice in bitbucket">
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" ng-model="choice.data" name="username" placeholder="Enter repository name">
+                            </div>
+                        </fieldset>
 
 
-
+                        <div id="choicesDisplay">
+                            {{ bitbucket }}
+                        </div>
                 </rd-widget-body>
                 <rd-widget></rd-widget>
             </rd-widget>
@@ -105,14 +109,28 @@
         <div class=col-lg-6>
             <rd-widget>
                 <rd-widget-header icon=fa-bug  title="Bugzilla">
-                    <button class="btn btn-sm btn-info"><i class="fa fa-plus"></i>Add</button>
-                    <button class="btn btn-sm btn-danger" ng-click="removeGithubByUser()">
+                    <button class="btn btn-sm btn-info" ng-click="addBugzilla()">
+                        <i class="fa fa-plus"></i>Add</button>
+                    <button class="btn btn-sm btn-danger" ng-click="removeBugzilla()">
                         <i class="fa fa-minus"></i>Remove
                     </button>
                 </rd-widget-header>
-                <rd-widget-body>
+                <rd-widget-body classes="medium no-padding">
+                          <span>
+                               Enter Bugzilla search key
+                          </span>
+                                <fieldset  data-ng-repeat="choice in bugzilla">
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" ng-model="choice.data" name="username" placeholder="Enter bug search key">
+                            </div>
+                        </fieldset>
 
+
+                        <div id="choicesDisplay">
+                            {{ bugzilla }}
+                        </div>
                 </rd-widget-body>
+                <rd-widget></rd-widget>
             </rd-widget>
 
         </div>
@@ -123,15 +141,26 @@
         <div class=col-lg-6>
             <rd-widget>
                 <rd-widget-header icon=fa-users title="UDD">
-                    <button class="btn btn-sm btn-info"><i class="fa fa-plus"></i>Add</button>
-                    <button class="btn btn-sm btn-danger" ng-click="removeGithubByUser()">
+                    <button class="btn btn-sm btn-info" ng-click="addUdd()">
+                        <i class="fa fa-plus"></i>Add</button>
+                    <button class="btn btn-sm btn-danger" ng-click="removeUdd()">
                         <i class="fa fa-minus"></i>Remove
                     </button>
                 </rd-widget-header>
                 <rd-widget-body classes="medium no-padding">
+                          <span>
+                               Enter
+                          </span>
+                                <fieldset  data-ng-repeat="choice in udd">
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" ng-model="choice.data" name="username" placeholder="Enter udd email id">
+                            </div>
+                        </fieldset>
 
 
-
+                        <div id="choicesDisplay">
+                            {{ udd }}
+                        </div>
                 </rd-widget-body>
                 <rd-widget></rd-widget>
             </rd-widget>
@@ -140,14 +169,18 @@
         <div class=col-lg-6>
             <rd-widget>
                 <rd-widget-header icon=fa-users  title=Extras>
-                    <button class="btn btn-sm btn-info"><i class="fa fa-plus"></i>Add</button>
-                    <button class="btn btn-sm btn-danger" ng-click="removeGithubByUser()">
-                        <i class="fa fa-minus"></i>Remove
-                    </button>
+                    <button class="btn btn-sm btn-info" ng-click="verifyData()"><i ng-class="verifySpin"></i>Verify Data</button>
+
                 </rd-widget-header>
-                <rd-widget-body>
-                    <div class=message>This is a standard message
-                        <span class=error> error message!</span></div>
+                <rd-widget-body classes="medium no-padding">
+                    <span>Enter the exisitng remote iCal url to merge</span><br><br>
+
+                <div class="col-lg-11">
+                    <input type="text" class="form-control" ng-model="choice.data" name="username" placeholder="URL">
+                </div>
+                    <div class="col-lg-8">
+                        Its always a good idea to verify data before submitting so click the verify button if you wish.
+                    </div>
                 </rd-widget-body>
             </rd-widget>
 

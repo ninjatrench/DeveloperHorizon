@@ -1,9 +1,10 @@
 __author__ = 'harsh'
 import string
 import random
-from icalendar import Calendar
 from controller.exceptions import ExpectedListAsInput
 from controller.db.dbobj import StoreSession
+import icalendar
+
 
 list_of_strings = lambda items: [key for key in items if type(key) is str]
 list_unique_items = lambda items: set(items)
@@ -23,11 +24,11 @@ def check_list(inputs) -> list:
 
 
 class CalendarBuilder(object):
-    cal = Calendar()
 
     def __init__(self, items):
         self.items = []
         self.items = check_list(items)
+        self.cal = icalendar.Calendar()
 
     def display(self) -> str:
         return self.cal.to_ical().decode().replace("\r\n", "\n").replace("\r\n", "\n")
@@ -42,8 +43,7 @@ class CalendarBuilder(object):
     def main(self) -> str:
         try:
             self.build_calendar()
-            resp = self.display()
-            return resp
+            return self.display()
 
         except Exception as e:
             print(e)
