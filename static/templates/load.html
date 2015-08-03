@@ -6,9 +6,16 @@
                 <input type='text' class='form-control' id='sid' ng-model="sid" placeholder='Enter your sessionID'>
             </div>
             <button type='button' class='btn btn-primary' ng-click='go()'>Go</button>
+            <button type='button' class='btn btn-primary' ng-click='clear()'>Clear</button>
         </div>
 
     </div>
+ <div class=col-xs-12>
+        <alert ng-show="showerror" type="danger" close=removeError()>
+           {{errorMsg}}
+        </alert>
+     </div>
+
 
     <div class="loading" ng-show="loading">
         <!-- credits : "http://tobiasahlin.com/spinkit/"
@@ -18,50 +25,128 @@
          -->
         <div class="double-bounce1"></div>
         <div class="double-bounce2"></div>
-    </div>'
+    </div>
 
 
     <div class=row ng-show=showLoadedSession>
         <rd-widget>
             <rd-widget-header icon=fa-tasks title="Session Details">
-                <input type=text placeholder=Search class="form-control input-sm" ng-model="key" ng-init="key=">
+        <input type=text placeholder=Search class="form-control input-sm" ng-model="search_key" ng-init="searchKey">
             </rd-widget-header>
-            <rd-widget-body classes='medium no-padding'>
+            <rd-widget-body>
                 <div class=table-responsive>
-                    <table class=table>
+                    <table class=table ng-init="id=0">
                         <thead>
                         <tr>
                             <th class=text-center>ID</th>
-                            <th>Username</th>
-                            <th>Role</th>
-                            <th>Account</th>
+                            <th>Data Source</th>
+                            <th>Parameters</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td class=text-center>1</td>
-                            <td>Joe Bloggs</td>
-                            <td>Super Admin</td>
-                            <td>AZ23045</td>
+                        <tr ng-repeat="i in resp.udd | filter:searchKey">
+                            <td class=text-center>
+                               <span ng-model="tableID">{{tableID}}</span>
+                            </td>
+                            <td>Debian Maintainer</td>
+                            <td>{{i}}
+                                <div class='label label-warning label-arrow label-arrow-left label-arrow-right' ng-show="show.udd">Not Added</div>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="i in resp.github_by_user | filter:searchKey">
+                            <td class=text-center>
+                               <span ng-model="tableID">{{tableID}}</span>
+                            </td>
+                            <td>Github Users</td>
+                            <td>
+                                <span ng-show="!show.github_by_user">https://github.com/{{i}}</span>
+                                <div class='label label-warning label-arrow label-arrow-left label-arrow-right' ng-show="show.github_by_user">Not Added</div>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="i in resp.github_by_repo | filter:searchKey">
+                            <td class=text-center>
+                               <span ng-model="tableID">{{tableID}}</span>
+                            </td>
+                            <td>Github Repositories</td>
+                            <td>
+                            <span ng-show="!show.github_by_repo">https://github.com/{{i}}</span>
+
+                                <div class='label label-warning label-arrow label-arrow-left label-arrow-right' ng-show="show.github_by_repo">Not Added</div>
+                            </td>
+                        </tr>
+
+                        <tr ng-repeat="i in resp.bugzilla | filter:searchKey">
+                            <td class=text-center>
+                               <span ng-model="tableID">{{tableID}}</span>
+                            </td>
+                            <td>Bugzilla Search Keys</td>
+                            <td>
+                                <span ng-show="!show.bugzilla">https://bitbucket.org/{{i}}</span>
+                                <div class='label label-warning label-arrow label-arrow-left label-arrow-right' ng-show="show.bugzilla">Not Added</div>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="i in resp.bitbucket | filter:searchKey">
+                            <td class=text-center>
+                               <span ng-model="tableID">{{tableID}}</span>
+                            </td>
+                            <td>BitBucket Repositories</td>
+                            <td>{{i}}
+                                <div class='label label-warning label-arrow label-arrow-left label-arrow-right' ng-show="show.bitbucket">Not Added</div>
+                            </td>
                         </tr>
                         <tr>
-                            <td class=text-center>2</td>
-                            <td>Timothy Hernandez</td>
-                            <td>Admin</td>
-                            <td>AU24783</td>
+                            <td class=text-center>
+                               <span ng-model="tableID">{{tableID}}</span>
+                            </td>
+                            <td>Remote iCalendar url</td>
+                            <td>
+                                {{resp.direct}}
+                            <div class='label label-warning label-arrow label-arrow-left label-arrow-right' ng-show="show.direct">Not Added</div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class=text-center>
+                               <span ng-model="tableID">{{tableID}}</span>
+                            </td>
+                            <td>Debian Summit</td>
+                            <td>
+                            <div class='label label-success label-arrow label-arrow-left label-arrow-right' ng-show="show.deb_summit_accept">Added</div>
+                            <div class='label label-warning label-arrow label-arrow-left label-arrow-right' ng-show="show.deb_summit_reject">Not Added</div>
+                            </td>
                         </tr>
                         <tr>
-                            <td class=text-center>3</td>
-                            <td>Joe Bickham</td>
-                            <td>User</td>
-                            <td>AM23781</td>
+                            <td class=text-center>
+                               <span ng-model="tableID">{{tableID}}</span>
+                            </td>
+                            <td>Ubuntu Events</td>
+                            <td>
+                            <div class='label label-success label-arrow label-arrow-left label-arrow-right' ng-show="show.ubuntu_events_accept">Added</div>
+                            <div class='label label-warning label-arrow label-arrow-left label-arrow-right' ng-show="show.ubuntu_events_reject">Not Added</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class=text-center>
+                               <span ng-model="tableID">{{tableID}}</span>
+                            </td>
+                            <td>Session URL</td>
+                            <td>{{sid}}</td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
             </rd-widget-body>
             <rd-widget-footer>
+                <div class="row">
+                    <div class="col-md-1 col-md-offset-2">
+                        <a class="btn btn-info" ng-click="saveJSON()"><i ng-class="exportJsonAnime"></i> Export to JSON</a>
 
+                        </div>
+                        <div class="col-md-1 col-md-offset-3">
+                            <button type="button" class="btn btn-info" ng-click="saveiCal()"><i ng-class="exportICALAnime"></i> Export iCalendar</button>
+                        </div>
+
+                </div>
                 <div class=clearfix></div>
             </rd-widget-footer>
         </rd-widget>

@@ -26,9 +26,7 @@ def add():
     print(data)
     if data:
         r = AddEntry(data)
-        resp = r.get_resp()
-        del r
-        return resp
+        return r.get_resp()
     else:
         return Response(response=json.dumps(FlaskError("Provide valid json data in POST request").get_error()),
                         status=400, content_type='application/json',

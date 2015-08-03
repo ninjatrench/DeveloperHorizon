@@ -1,0 +1,35 @@
+<div ng-controller='LoadCalendar'>
+
+    <div class=row>
+        <div class='center-block'>
+            <div class='col-xs-4'>
+                <input type='text' class='form-control' id='sid' ng-model="sid" placeholder='Enter your sessionID'>
+            </div>
+            <button type='button' class='btn btn-primary' ng-click='go()'>Go</button>
+            <button type='button' class='btn btn-primary' ng-click='clear()'>Clear</button>
+
+        </div>
+
+    </div>
+
+     <div class=col-xs-12>
+        <alert ng-show="showerror" type="danger" close=removeError()>
+           {{errorMsg}}
+        </alert>
+     </div>
+
+
+
+    <div class="loading" ng-show="loading">
+        <!-- credits : "http://tobiasahlin.com/spinkit/"
+         License :The MIT License (MIT)
+         Copyright (c) 2014 Tobias Ahlin
+         https://github.com/tobiasahlin/SpinKit/blob/master/LICENSE
+         -->
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+
+    <div ng-show="showCalendar" ng-bind-html="instaCaliFrame">
+    </div>
+</div>

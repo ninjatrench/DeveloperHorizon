@@ -15,6 +15,79 @@
     <div class=row>
 
         <div class=col-lg-6>
+            <rd-widget>
+                <rd-widget-header icon=fa-users title="UDD">
+                    <button class="btn btn-sm btn-info" ng-click="addUdd()">
+                        <i class="fa fa-plus"></i>Add</button>
+                    <button class="btn btn-sm btn-danger" ng-click="removeUdd()">
+                        <i class="fa fa-minus"></i>Remove
+                    </button>
+                </rd-widget-header>
+                <rd-widget-body classes="medium no-padding">
+
+                    <div class="showUsage">
+                        <span>
+                               Enter the UDD email address.
+                        </span>
+                    </div>
+                                <fieldset  data-ng-repeat="choice in udd">
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" ng-model="choice.data" name="username" placeholder="user@website.com">
+                            </div>
+                        </fieldset>
+
+
+                        <div id="choicesDisplay">
+                            {{ udd }}
+                        </div>
+                </rd-widget-body>
+                <rd-widget></rd-widget>
+            </rd-widget>
+        </div>
+        <div class=col-lg-6>
+            <rd-widget>
+                <rd-widget-header icon=fa-rocket title="Special Events">
+                </rd-widget-header>
+                <rd-widget-body>
+                    <div class="widget-icon blue pull-left"><i class="fa fa-support"></i></div>
+                    <div class=comment>Debian Summit</div>
+                    <div class="[ form-group ]">
+                        <input type="checkbox" name="debian" id="debian" ng-model="debian" ng-click="updateDebian()" autocomplete="off" />
+                        <div class="[ btn-group ]">
+                            <label for="debian" class="[ btn btn-info ]">
+                                <span class="[ glyphicon glyphicon-ok ]"></span>
+                                <span> </span>
+                            </label>
+                            <label for="debian" class="[ btn btn-default active ]">
+                                Add event
+                            </label>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="widget-icon green pull-left"><i class="fa fa-users"></i></div>
+                    <div class=comment>Ubuntu Loco Events</div>
+                    <div class="[ form-group ]">
+                        <input type="checkbox" name="ubuntu" id="ubuntu" ng-model="ubuntu" ng-click="updateUbuntu()" autocomplete="off" />
+                        <div class="[ btn-group ]">
+                            <label for="ubuntu" class="[ btn btn-info ]">
+                                <span class="[ glyphicon glyphicon-ok ]"></span>
+                                <span> </span>
+                            </label>
+                            <label for="ubuntu" class="[ btn btn-default active ]">
+                                Add event
+                            </label>
+                        </div>
+                    </div>
+
+                </rd-widget-body>
+            </rd-widget>
+        </div>
+
+    </div>
+
+    <div class=row>
+
+        <div class=col-lg-6>
                 <rd-widget>
                     <rd-widget-header icon=fa-users title="Github by Users">
                         <button class="btn btn-sm btn-info" ng-click="addGithubByUser()">
@@ -26,14 +99,15 @@
                     </rd-widget-header>
 
                     <rd-widget-body classes="medium no-padding">
-                                    <span class="medium">
+                            <div class="showUsage">
+                                    <span>
                                         Enter the Username of Github Account and issues in all repositories of that user will be aggregated
                                     </span>
-
+                            </div>
                         <fieldset  data-ng-repeat="choice in github_by_user">
 
                                 <div class="col-lg-7">
-                                    <input type="text" class="form-control" ng-model="choice.data" name="username" placeholder="github.com/UserName">
+                                    <input type="text" class="form-control" ng-model="choice.data" name="username" placeholder="<UserName>">
                                 </div>
 
                         </fieldset>
@@ -58,13 +132,14 @@
                         </button>
                     </rd-widget-header>
                     <rd-widget-body classes="medium no-padding">
-                        <span class="medium">
-                        Enter the of Github Repository and all open issues of that repository will be aggregated
-                        </span>
-
+                        <div class="showUsage">
+                                <span>
+                                Enter the of Github Repository and all open issues of that repository will be aggregated
+                                </span>
+                        </div>
                         <fieldset  data-ng-repeat="choice in github_by_repo">
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" ng-model="choice.data" name="username" placeholder="Enter the github username">
+                                <input type="text" class="form-control" ng-model="choice.data" name="username" placeholder="username/repository">
                             </div>
                         </fieldset>
                         <div id="choicesDisplay">
@@ -88,12 +163,14 @@
                     </button>
                 </rd-widget-header>
                 <rd-widget-body classes="medium no-padding">
+                    <div class="showUsage">
                           <span>
                                Enter Bitbucket
                           </span>
+                    </div>
                                 <fieldset  data-ng-repeat="choice in bitbucket">
                             <div class="col-lg-6">
-                                <input type="text" class="form-control" ng-model="choice.data" name="username" placeholder="Enter repository name">
+                                <input type="text" class="form-control" ng-model="choice.data" name="username" placeholder="username/repository">
                             </div>
                         </fieldset>
 
@@ -116,12 +193,15 @@
                     </button>
                 </rd-widget-header>
                 <rd-widget-body classes="medium no-padding">
+                    <div class="showUsage">
                           <span>
                                Enter Bugzilla search key
                           </span>
+                    </div>
                                 <fieldset  data-ng-repeat="choice in bugzilla">
                             <div class="col-lg-6">
-                                <input type="text" class="form-control" ng-model="choice.data" name="username" placeholder="Enter bug search key">
+                                <input type="text" class="form-control" ng-model="choice.data" name="username" placeholder="search by keyword">
+
                             </div>
                         </fieldset>
 
@@ -140,41 +220,13 @@
 
         <div class=col-lg-6>
             <rd-widget>
-                <rd-widget-header icon=fa-users title="UDD">
-                    <button class="btn btn-sm btn-info" ng-click="addUdd()">
-                        <i class="fa fa-plus"></i>Add</button>
-                    <button class="btn btn-sm btn-danger" ng-click="removeUdd()">
-                        <i class="fa fa-minus"></i>Remove
-                    </button>
-                </rd-widget-header>
-                <rd-widget-body classes="medium no-padding">
-                          <span>
-                               Enter
-                          </span>
-                                <fieldset  data-ng-repeat="choice in udd">
-                            <div class="col-lg-6">
-                                <input type="text" class="form-control" ng-model="choice.data" name="username" placeholder="Enter udd email id">
-                            </div>
-                        </fieldset>
-
-
-                        <div id="choicesDisplay">
-                            {{ udd }}
-                        </div>
-                </rd-widget-body>
-                <rd-widget></rd-widget>
-            </rd-widget>
-        </div>
-
-        <div class=col-lg-6>
-            <rd-widget>
                 <rd-widget-header icon=fa-users  title=Extras>
-                    <button class="btn btn-sm btn-info" ng-click="verifyData()"><i ng-class="verifySpin"></i>Verify Data</button>
 
                 </rd-widget-header>
                 <rd-widget-body classes="medium no-padding">
+                    <div class="showUsage">
                     <span>Enter the exisitng remote iCal url to merge</span><br><br>
-
+                    </div>
                 <div class="col-lg-11">
                     <input type="text" class="form-control" ng-model="choice.data" name="username" placeholder="URL">
                 </div>
@@ -185,65 +237,33 @@
             </rd-widget>
 
         </div>
-    </div>
-
-    <div class=row>
-        <div class=col-lg-6>
-            <rd-widget>
-                <rd-widget-header icon=fa-rocket title="Special Events">
-                </rd-widget-header>
-                <rd-widget-body>
-                    <div class="widget-icon green pull-left"><i class="fa fa-users"></i></div>
-                    <div class=comment>Ubuntu Loco Events</div>
-                    <div class="[ form-group ]">
-                        <input type="checkbox" name="ubuntu" id="ubuntu" ng-model="ubuntu" ng-click="updateUbuntu()" autocomplete="off" />
-                        <div class="[ btn-group ]">
-                            <label for="ubuntu" class="[ btn btn-info ]">
-                                <span class="[ glyphicon glyphicon-ok ]"></span>
-                                <span> </span>
-                            </label>
-                            <label for="ubuntu" class="[ btn btn-default active ]">
-                                Add event
-                            </label>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="widget-icon blue pull-left"><i class="fa fa-support"></i></div>
-                    <div class=comment>Debian Summit</div>
-                    <div class="[ form-group ]">
-                        <input type="checkbox" name="debian" id="debian" ng-model="debian" ng-click="updateDebian()" autocomplete="off" />
-                        <div class="[ btn-group ]">
-                            <label for="debian" class="[ btn btn-info ]">
-                                <span class="[ glyphicon glyphicon-ok ]"></span>
-                                <span> </span>
-                            </label>
-                            <label for="debian" class="[ btn btn-default active ]">
-                                Add event
-                            </label>
-                        </div>
-                    </div>
-
-                </rd-widget-body>
-            </rd-widget>
-        </div>
-
 
 
         <div class=col-lg-6>
 
                 <rd-widget>
                     <rd-widget-header icon=fa-download  title="Download and save">
+                            <button class="btn btn-sm btn-info" ng-click="verifyData()"><i ng-class="verifySpin"></i>Verify Data</button>
+
                         </rd-widget-header>
                     <rd-widget-body>
                         <div class=comment>
                             Download this without saving session
                         </div>
-                        <button type="button" class="btn btn-warning">Download</button>
+                        <button type="button" class="btn btn-warning" ng-click="DownloadIcalApi()">Download</button>
                         <hr>
                         <div class=comment>
                             Generate sessionID and permanent url for this config
                         </div><br>
-                        <button type="button" class="btn btn-success">Generate</button>
+                        <button type="button" class="btn btn-success" ng-click="saveSessionApi()">Generate</button>
+
+                        <div class="comment" ng-show="showShortURL">
+                            <span>Session ID is : {{session_id}}</span><br>
+                            <input type="text" class="form-control" ng-model="sessionUrl">
+                        <button type="button" class="btn btn-info" ng-click="shortenURL()">Get Short URL</button>
+                            <span>{{shortenedUrl}}</span>
+
+                        </div>
                     </rd-widget-body>
                 </rd-widget>
 
