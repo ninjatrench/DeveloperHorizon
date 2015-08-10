@@ -58,9 +58,15 @@ def download(session_id):
                         mimetype="application/json")
 
 
-@app.route('/shorten/<target>', methods=['GET'])
-def shorten_url(target):
-    return json_api(url=target)
+@app.route('/shorten', methods=['POST'])
+def shorten_url():
+    gc.collect()
+    data = request.get_json(force=True)
+    target = data.get("url", False)
+    if target:
+        return json_api(url=target)
+    else:
+        abort(500)
 
 if __name__ == '__main__':
     gc.enable()

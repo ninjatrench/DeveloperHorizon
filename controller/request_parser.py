@@ -28,6 +28,7 @@ class AddEntry(object):
         del self.items[:]
         """
         FIXME : dual entry problem
+        Fixed in #2 :)
         """
         self.request = request
         self.parse()

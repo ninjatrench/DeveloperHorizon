@@ -2,8 +2,11 @@
   <dictionary name="harsh">
     <words>
       <w>daftary</w>
+      <w>fullcalendar</w>
       <w>gsoc</w>
       <w>jsonrpc</w>
+      <w>toogle</w>
+      <w>viewport</w>
     </words>
   </dictionary>
 </component>

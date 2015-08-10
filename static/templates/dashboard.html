@@ -243,8 +243,7 @@
 
                 <rd-widget>
                     <rd-widget-header icon=fa-download  title="Download and save">
-                            <button class="btn btn-sm btn-info" ng-click="verifyData()"><i ng-class="verifySpin"></i>Verify Data</button>
-
+                            <button class="btn btn-sm btn-info"><i ng-class="verifySpin"></i>Status</button>
                         </rd-widget-header>
                     <rd-widget-body>
                         <div class=comment>
@@ -259,9 +258,10 @@
 
                         <div class="comment" ng-show="showShortURL">
                             <span>Session ID is : {{session_id}}</span><br>
-                            <input type="text" class="form-control" ng-model="sessionUrl">
+                            <input type="text" class="form-control" ng-model="sessionUrl" disabled>
                         <button type="button" class="btn btn-info" ng-click="shortenURL()">Get Short URL</button>
-                            <span>{{shortenedUrl}}</span>
+                            <input type="text" class="form-control" placeholder="short URL displayed here" ng-model="shortenedUrl" disabled>
+
 
                         </div>
                     </rd-widget-body>
