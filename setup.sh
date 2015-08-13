@@ -35,6 +35,7 @@ git clone https://github.com/ninjatrench/DeveloperHorizon
 cd DeveloperHorizon
 echo "Follow following commands"
 echo ""
+echo "Enter the directory"
 echo ">> cd DeveloperHorizon"
 echo ""
 echo "Adjust the configurations at config/config.cfg including host, port and github access token etc.."
