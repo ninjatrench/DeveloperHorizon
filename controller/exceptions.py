@@ -29,7 +29,7 @@ class ImproperConfig(Exception):
 class InvalidRemoteUrl(Exception):
     def __init__(self, message=None, error=None, *args):
         if not message:
-            self.message = "Invalid or Blank remote iCal file provided"
+            self.message = "Invalid or Blank remote iCal file/URL provided"
         else:
             self.message = message
 

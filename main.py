@@ -10,6 +10,12 @@ from controller.deb_li_api import json_api
 
 app = Flask(__name__, static_url_path='')
 
+"""
+Async attempt
+from flask.ext.aiohttp import AioHTTP
+#aio = AioHTTP(app)
+"""
+
 
 @app.errorhandler(403)
 @app.errorhandler(500)
@@ -71,3 +77,4 @@ def shorten_url():
 if __name__ == '__main__':
     gc.enable()
     app.run(host=bind_address, port=int(bind_port))
+    #aio.run(app,host=bind_address, port=int(bind_port))

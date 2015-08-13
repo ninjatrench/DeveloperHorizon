@@ -15,7 +15,7 @@ def make_url(url):
     else:
         return bitbucket_base_url
 
-
+# Callback function for multiprocessing of parsing fetched issues
 def make_todo(issue) -> icalendar.Todo():
     try:
         todo = icalendar.Todo()
@@ -56,7 +56,7 @@ class BitBucketAPI(object):
         finally:
             return self.items
 
-    def fetch_issue_by_repo(self, repo_name):
+    def fetch_issue_by_repo(self, repo_name) -> list:
         repo_name_parts = str(repo_name).split('/')
         user = repo_name_parts[0]
         repo_title = repo_name_parts[1]

@@ -35,11 +35,6 @@
                                 <input type="text" class="form-control" ng-model="choice.data" name="username" placeholder="user@website.com">
                             </div>
                         </fieldset>
-
-
-                        <div id="choicesDisplay">
-                            {{ udd }}
-                        </div>
                 </rd-widget-body>
                 <rd-widget></rd-widget>
             </rd-widget>
@@ -113,10 +108,6 @@
                         </fieldset>
 
 
-                        <div id="choicesDisplay">
-                            {{ github_by_user }}
-                        </div>
-
 
                     </rd-widget-body>
                     <rd-widget></rd-widget>
@@ -142,9 +133,7 @@
                                 <input type="text" class="form-control" ng-model="choice.data" name="username" placeholder="username/repository">
                             </div>
                         </fieldset>
-                        <div id="choicesDisplay">
-                            {{ github_by_repo }}
-                        </div>
+
 
                     </rd-widget-body>
                 </rd-widget>
@@ -173,11 +162,6 @@
                                 <input type="text" class="form-control" ng-model="choice.data" name="username" placeholder="username/repository">
                             </div>
                         </fieldset>
-
-
-                        <div id="choicesDisplay">
-                            {{ bitbucket }}
-                        </div>
                 </rd-widget-body>
                 <rd-widget></rd-widget>
             </rd-widget>
@@ -204,11 +188,6 @@
 
                             </div>
                         </fieldset>
-
-
-                        <div id="choicesDisplay">
-                            {{ bugzilla }}
-                        </div>
                 </rd-widget-body>
                 <rd-widget></rd-widget>
             </rd-widget>
@@ -243,7 +222,7 @@
 
                 <rd-widget>
                     <rd-widget-header icon=fa-download  title="Download and save">
-                            <button class="btn btn-sm btn-info"><i ng-class="verifySpin"></i>Status</button>
+                            <button class="btn btn-sm btn-info"><i ng-class="verifySpin"></i>Status Bar</button>
                         </rd-widget-header>
                     <rd-widget-body>
                         <div class=comment>
@@ -258,8 +237,8 @@
 
                         <div class="comment" ng-show="showShortURL">
                             <span>Session ID is : {{session_id}}</span><br>
-                            <input type="text" class="form-control" ng-model="sessionUrl" disabled>
-                        <button type="button" class="btn btn-info" ng-click="shortenURL()">Get Short URL</button>
+                            <input type="text" class="form-control" ng-model="sessionUrl" disabled><br>
+                        <button type="button" class="btn btn-info" ng-click="shortenURL()">Get Short URL</button><br>
                             <input type="text" class="form-control" placeholder="short URL displayed here" ng-model="shortenedUrl" disabled>
 
 

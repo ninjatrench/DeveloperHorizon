@@ -73,7 +73,6 @@ class GithubByUsername(Todo):
 
         except Exception as e:
             print(e)
-            return "Some Error Occurred"
 
         finally:
             return self.items
@@ -105,7 +104,6 @@ class GithubByRepo(Todo):
 
         except Exception as e:
             print(e)
-            return "Some Error Occurred"
 
         finally:
             return self.items

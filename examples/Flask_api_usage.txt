@@ -79,7 +79,8 @@ Request : GET
     "Error": true
     }
 
-3. Directly downloading ical file from session_id
+3.
+Directly downloading ical file from session_id
 It usually takes about a minute to generate response, if all data sources are selected.
 (AJAX calls and jquery calls are responded as well)
 
@@ -89,3 +90,18 @@ Request GET
 Response : Downloadable ical file.
 
 
+4.
+Generate Short URL for session's permanent URL
+
+URL : http://localhost:5000/download
+Request POST:
+    {
+        "url" : "http://a.com"
+
+    }
+
+Response:
+    {
+        "Success": True,
+        "Url": "http://deb.li/<something>
+    }

@@ -3,7 +3,7 @@ Developers Dashboard for managing github issues, Debian Package issues, Debian C
 via single tool.
 
 # Gsoc Project
-This project is part of Google Summer of Code 2014 under Debian community.
+This project is part of Google Summer of Code 2015 under Debian community.
 
 # Project Mentors
 Daniel Pocock and Iain R. Learmonth
