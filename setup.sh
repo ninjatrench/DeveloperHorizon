@@ -33,7 +33,18 @@ pip3 install aiohttp
 git clone https://github.com/ninjatrench/DeveloperHorizon
 
 cd DeveloperHorizon
-echo "Adjust the config files at config/config.cfg"
-echo "Replace http://localhost:5000/ with http://<IP>:<PORT>/ as mentioned in config file"
-echo "Set default_config_file in conf.py"
-echo "Run python3 main.py"
+echo "Follow following commands"
+echo ""
+echo ">> cd DeveloperHorizon"
+echo ""
+echo "Adjust the configurations at config/config.cfg including host, port and github access token etc.."
+echo ">> nano config/config.cfg"
+echo ""
+echo "Replace http://localhost:5000/ with http://<IP>:<PORT>/ as mentioned in config file in static"
+echo ">> nano static/js/dashboard.min.js"
+echo ""
+echo "Set default_config_file location in controler/config.py"
+echo ">> nano controller/conf.py"
+echo ""
+echo "finally run flask main app"
+echo ">> python3 main.py"
