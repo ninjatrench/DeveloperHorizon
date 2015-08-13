@@ -10,8 +10,8 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 # Preparing System
-apt-get install git
-apt-get install python3-pip
+apt-get install git -y
+apt-get install python3-pip -y
 
 
 #Preparing python libraries
