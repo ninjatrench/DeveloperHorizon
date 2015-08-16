@@ -27,13 +27,15 @@ How to install and use
 I have recently written a one step installation script for this project
 just fetch the setup.sh script and run/pipe it to bash
 
-.. code-block:: bash
+.. code-block:: pycon
+
     curl https://raw.githubusercontent.com/ninjatrench/DeveloperHorizon/master/setup.sh | bash
     
     
 or
 
-.. code-block:: bash
+.. code-block:: pycon
+
     wget https://raw.githubusercontent.com/ninjatrench/DeveloperHorizon/master/setup.sh -o setup.sh
     chmod +x setup.sh
     bash setup.sh
