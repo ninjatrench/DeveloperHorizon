@@ -57,12 +57,14 @@ or build your own UI over the webAPI
 Reference usage of REST web API is at : https://github.com/ninjatrench/DeveloperHorizon/blob/master/examples/Flask_api_usage.txt
 
 Backend:
+
 - Python3
 - Flash microframework for handling url and web api
 - SQLalchemy and JSON for storage
 - python-multiprocessing for concurrent processing
 
-Front end is written in
+Front end :
+
 - HTML5
 - CSS 3
 - Angular JS
