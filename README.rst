@@ -19,8 +19,8 @@ Full documentation is available at https://wiki.debian.org/SummerOfCode2015/Deve
 
 Project Mentors
 -------------
-- Daniel Pocock (https://github.com/irl)
-- Iain R. Learmonth (https://github.com/dpocock)
+- Daniel Pocock (https://github.com/dpocock)
+- Iain R. Learmonth (https://github.com/irl)
 
 How to install and use
 -------------
