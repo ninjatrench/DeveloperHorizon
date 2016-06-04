@@ -1,4 +1,7 @@
-__author__ = 'harsh'
+__author__ = 'harsh daftary'
+#GSOC 15 and GSOC 16 project
+#GSOC mentor for 2015 - Daniel, Iain
+#GSOC mentor for 2016 - Iain, Bzed
 import json
 import gc
 from flask import Flask, request, Response, abort, url_for
