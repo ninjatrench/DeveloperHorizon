@@ -60,7 +60,7 @@ class BitBucketAPI(object):
         repo_name_parts = str(repo_name).split('/')
         user = repo_name_parts[0]
         repo_title = repo_name_parts[1]
-        r = requests.get(bitbucket_api_url % (user, repo_title))
+        r = requests.get(bitbucket_api_url % (user, repo_title), verify=False)
         data = json.loads(r.text)
         issues = data.get('issues', False)
         if issues:

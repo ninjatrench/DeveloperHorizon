@@ -63,7 +63,7 @@ class UddByEmail(object):
             return self.items
 
     def fetch_data(self, email):
-        r = requests.get("https://udd.debian.org/dmd/?format=json&email1=%s" % email)
+        r = requests.get("https://udd.debian.org/dmd/?format=json&email1=%s" % email, verify=False)
         data = json.loads(r.text)
         p = multiprocessing.Pool(multiprocessing.cpu_count() * 2)
         item = p.map(build, data)

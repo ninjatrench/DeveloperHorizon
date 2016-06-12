@@ -15,7 +15,7 @@ class DirectUrl(object):
 
     def main(self):
         data = []
-        r = requests.get(self.url)
+        r = requests.get(self.url, verify=False)
         obj = Calendar.from_ical(r.text)
         data = obj.walk()
         return data[1:]

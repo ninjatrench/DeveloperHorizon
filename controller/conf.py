@@ -8,7 +8,7 @@ use_sql = False
 github_token_exists = False
 
 # Default file location of config file, give absolute path only
-default_config_file = "/home/harsh/Desktop/dashboard/config/config.cfg"
+default_config_file = "config/config.cfg"
 
 # Dependent python modules. refer documentation on how to install them
 dependency = [
