@@ -234,12 +234,15 @@
                             Generate sessionID and permanent url for this config
                         </div><br>
                         <button type="button" class="btn btn-success" ng-click="saveSessionApi()">Generate</button>
+                        <button type="button" class="btn" ng-show="showShortURL" onclick="new Clipboard('.btn');" data-clipboard-target="#surl">Copy</button>
+
 
                         <div class="comment" ng-show="showShortURL">
                             <span>Session ID is : {{session_id}}</span><br>
-                            <input type="text" class="form-control" ng-model="sessionUrl" disabled><br>
-                        <button type="button" class="btn btn-info" ng-click="shortenURL()">Get Short URL</button><br>
-                            <input type="text" class="form-control" placeholder="short URL displayed here" ng-model="shortenedUrl" disabled>
+                            <input id="surl" type="text" class="form-control" ng-model="sessionUrl" readonly><br>
+                        <button type="button" class="btn btn-info" ng-click="shortenURL()">Short</button><br>
+
+                            <input id="ssurl" type="text" class="form-control" placeholder="short URL displayed here" ng-model="shortenedUrl" readonly>
 
 
                         </div>
