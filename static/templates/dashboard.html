@@ -25,9 +25,9 @@
                 </rd-widget-header>
                 <rd-widget-body classes="medium no-padding">
 
-                    <div class="showUsage">
-                        <span>
-                               Enter the UDD email address.
+                    <div class="container" style = "padding: 2%;">
+                        <span class="label-info label">
+                               Enter the UDD email address
                         </span>
                     </div>
                                 <fieldset  data-ng-repeat="choice in udd">
@@ -84,7 +84,7 @@
 
         <div class=col-lg-6>
                 <rd-widget>
-                    <rd-widget-header icon=fa-users title="Github by Users">
+                    <rd-widget-header icon=fa-users title="Github">
                         <button class="btn btn-sm btn-info" ng-click="addGithubByUser()">
                             <i class="fa fa-plus"></i>Add
                         </button>
@@ -94,11 +94,11 @@
                     </rd-widget-header>
 
                     <rd-widget-body classes="medium no-padding">
-                            <div class="showUsage">
-                                    <span>
-                                        Enter the Username of Github Account and issues in all repositories of that user will be aggregated
-                                    </span>
-                            </div>
+                         <div class="container" style = "padding: 2%;">
+                        <span class="label-info label">
+                            Enter the Github Username
+                        </span>
+                    </div>
                         <fieldset  data-ng-repeat="choice in github_by_user">
 
                                 <div class="col-lg-7">
@@ -115,7 +115,7 @@
         </div>
         <div class=col-lg-6>
                 <rd-widget>
-                    <rd-widget-header icon=fa-github  title="Github by repo">
+                    <rd-widget-header icon=fa-github  title="Github">
                         <button class="btn btn-sm btn-info" ng-click="addGithubByRepo()">
                             <i class="fa fa-plus"></i>Add</button>
                         <button class="btn btn-sm btn-danger" ng-click="removeGithubByRepo()">
@@ -123,11 +123,12 @@
                         </button>
                     </rd-widget-header>
                     <rd-widget-body classes="medium no-padding">
-                        <div class="showUsage">
-                                <span>
-                                Enter the of Github Repository and all open issues of that repository will be aggregated
-                                </span>
-                        </div>
+
+                           <div class="container" style = "padding: 2%;">
+                        <span class="label-info label">
+                            Enter the Github Repository
+                        </span>
+                    </div>
                         <fieldset  data-ng-repeat="choice in github_by_repo">
                             <div class="col-lg-10">
                                 <input type="text" class="form-control" ng-model="choice.data" name="username" placeholder="username/repository">
@@ -152,10 +153,10 @@
                     </button>
                 </rd-widget-header>
                 <rd-widget-body classes="medium no-padding">
-                    <div class="showUsage">
-                          <span>
-                               Enter Bitbucket
-                          </span>
+                      <div class="container" style = "padding: 2%;">
+                        <span class="label-info label">
+                            Enter the BitBucket
+                        </span>
                     </div>
                                 <fieldset  data-ng-repeat="choice in bitbucket">
                             <div class="col-lg-6">
@@ -177,11 +178,12 @@
                     </button>
                 </rd-widget-header>
                 <rd-widget-body classes="medium no-padding">
-                    <div class="showUsage">
-                          <span>
+                    <div class="container" style = "padding: 2%;">
+                        <span class="label-info label">
                                Enter Bugzilla search key
-                          </span>
+                        </span>
                     </div>
+
                                 <fieldset  data-ng-repeat="choice in bugzilla">
                             <div class="col-lg-6">
                                 <input type="text" class="form-control" ng-model="choice.data" name="username" placeholder="search by keyword">
@@ -203,15 +205,29 @@
 
                 </rd-widget-header>
                 <rd-widget-body classes="medium no-padding">
-                    <div class="showUsage">
-                    <span>Enter the exisitng remote iCal url to merge</span><br><br>
+                       <div class="container" style = "padding: 2%;">
+                        <span class="label-info label">
+                            Merge Remote iCal URL
+                        </span>
                     </div>
+
                 <div class="col-lg-11">
-                    <input type="text" class="form-control" ng-model="choice.data" name="username" placeholder="URL">
+                    <input type="text" class="form-control" ng-model="choice.data" name="username" placeholder="http://debian.net/abc.ical">
                 </div>
-                    <div class="col-lg-8">
-                        Its always a good idea to verify data before submitting so click the verify button if you wish.
+
+                    <br><br>
+                    <div class="container" style = "padding: 2%;">
+                        <span class="label-info label">
+                            Merge Remote ATOM/RSS Feed
+                        </span>
                     </div>
+                    <div class="col-lg-11">
+                    <input type="text" class="form-control" ng-model="rss" name="username" placeholder="http://debian.net/abc.rss">
+
+                    </div>
+
+
+
                 </rd-widget-body>
             </rd-widget>
 
@@ -221,7 +237,7 @@
         <div class=col-lg-6>
 
                 <rd-widget>
-                    <rd-widget-header icon=fa-download  title="Download and save">
+                    <rd-widget-header icon=fa-download  title="Save">
                             <button class="btn btn-sm btn-info"><i ng-class="verifySpin"></i>Status Bar</button>
                         </rd-widget-header>
                     <rd-widget-body>
