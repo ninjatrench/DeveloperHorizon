@@ -108,8 +108,10 @@ class AddEntry(object):
             self.items.append(DebSummit().main())
         if self.udd:
             self.items.append(UddByEmail(emails=self.udd).main())
-        #if self.rss:
-         #   self.items.append(RssAPI)
+        if self.rss:
+            self.items.append(RssAPI(url=self.rss).main())
+        if self.atom:
+            self.items.append(AtomAPI(url=self.atom).main())
 
 
 class GetEntry(object):

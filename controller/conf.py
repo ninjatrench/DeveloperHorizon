@@ -7,7 +7,7 @@ use_json = False
 use_sql = False
 github_token_exists = False
 
-# Default file location of config file, give absolute path only
+# Default file location of config file, give absolute or relative path
 default_config_file = "config/config.cfg"
 
 # Dependent python modules. refer documentation on how to install them
@@ -17,7 +17,7 @@ dependency = [
     "PyYaml",
     "PyGithub",
     "icalendar",
-    "aiohttp"
+    "feedparser"
 ]
 pkg_resources.require(dependency)
 
@@ -60,6 +60,9 @@ if json_dbname:
     use_json = True
 
 # IF JSON AND SQL both are mentioned then SQL is given priority
+#Fixed missing part
+if use_json and use_sql:
+    use_json = False
 
 if use_json or use_sql:
     pass

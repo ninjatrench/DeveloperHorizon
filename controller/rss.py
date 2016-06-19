@@ -7,12 +7,13 @@ class FeedAPI(object):
     def __init__(self, url, type="RSS"):
         self.events = []
         self.url = url
+        self.type = type
         self.obj = None
         self.flag = False
-        #self.load_parse()
+        #self.load_parse() - call should not be in base class
 
     def load_parse(self):
-        try :
+        try:
             self.obj = feedparser.parse(self.url)
         except Exception as e:
             print(e)
@@ -26,7 +27,8 @@ class FeedAPI(object):
         e['SUMMARY'] = entry.title
         e['DESCRIPTION'] = entry.description
         e['URL'] = entry.link
-        e['DTSTAMP'] = entry.published
+        if entry.published:
+            e['DTSTAMP'] = entry.published
         self.events.append(e)
 
     def build_event_rss(self, entry):
@@ -35,13 +37,20 @@ class FeedAPI(object):
         e['SUMMARY'] = entry.title
         e['DESCRIPTION'] = entry.description
         e['URL'] = entry.link
-        e['DTSTAMP'] = entry.date
+        if entry.date:
+            e['DTSTAMP'] = entry.date
         self.events.append(e)
 
     def flow_control(self):
         if self.flag:
-            for i in self.obj.entries:
-                self.build_event_rss(entry=i)
+            if self.type == "RSS":
+                for i in self.obj.entries:
+                    self.build_event_rss(entry=i)
+            elif self.type == "ATOM":
+                for i in self.obj.entries:
+                    self.build_event_atom(entry=i)
+            else:
+                return False
             return self.events
         return False
 
@@ -53,12 +62,12 @@ class AtomAPI(FeedAPI):
     def main(self):
         self.load_parse()
         resp = self.flow_control()
-        if resp:
-            return resp
-        else:
-            return []
+        return [] if not resp else resp
 
 
 class RssAPI(FeedAPI):
+    # __init__ constructor not needed here as default value of type in base class is RSS
     def main(self):
-        pass
+        self.load_parse()
+        resp = self.flow_control()
+        return [] if not resp else resp

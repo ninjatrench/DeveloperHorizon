@@ -4,6 +4,7 @@ from controller.git import GithubByUsername, GithubByRepo
 from controller.udd import UddByEmail
 from controller.direct import DebSummit, UbuntuEvents
 from controller.bugzilla_search import BugzillAPI
+from controller.rss import RssAPI, AtomAPI
 from controller.helper import CalendarBuilder
 
 
@@ -70,6 +71,17 @@ def bit_bucket():
     return resp
 
 
+def rss_feeds():
+    r = RssAPI("http://lwn.net/headlines/newrss")
+    resp = r.main()
+    return resp
+
+def atom_feeds():
+    a = AtomAPI("https://www.gentoo.org/feeds/news.xml")
+    resp = a.main()
+    return resp
+
+
 def test_build_all():
     # print_conf()
     items = []
@@ -81,6 +93,8 @@ def test_build_all():
     items.append(ubuntu_events())
     items.append(bugzilla_api())
     items.append(bit_bucket())
+    items.append(rss_feeds())
+    items.append(atom_feeds())
 
     c = CalendarBuilder(items)
     print("Started Building")
