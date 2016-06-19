@@ -3,6 +3,7 @@ import icalendar
 from controller.conf import github_access_token, github_token_exists
 from controller.helper import check_list
 
+
 class Todo(object):
     conf = {}
     cache = {}
@@ -56,10 +57,10 @@ class Todo(object):
 
 
 class GithubByUsername(Todo):
-    Flag = True
-    items = []
 
     def __init__(self, users):
+        self.Flag = True
+        self.items = []
         super().__init__()
         self.users = check_list(users)
 

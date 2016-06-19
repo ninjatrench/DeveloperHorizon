@@ -5,7 +5,6 @@ from controller.exceptions import ExpectedListAsInput
 from controller.db.dbobj import StoreSession
 import icalendar
 
-
 list_of_strings = lambda items: [key for key in items if type(key) is str]
 list_unique_items = lambda items: set(items)
 
@@ -24,7 +23,6 @@ def check_list(inputs) -> list:
 
 
 class CalendarBuilder(object):
-
     def __init__(self, items):
         self.items = []
         self.items = check_list(items)
@@ -34,7 +32,7 @@ class CalendarBuilder(object):
         return self.cal.to_ical().decode().replace("\r\n", "\n").replace("\r\n", "\n")
 
     def build_calendar(self):
-        self.cal.add('prodid', '-//<website>//DashboardHorizon//')
+        self.cal.add('prodid', '-//<horizon.debian.net>//DashboardHorizon//')
         self.cal.add('version', '2.0')
         for i in self.items:
             for j in i:

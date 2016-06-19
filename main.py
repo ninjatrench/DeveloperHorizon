@@ -32,7 +32,8 @@ def error(something):
 def add():
     gc.collect()
     data = request.get_json(force=True)
-    print(data)
+    print(data.get('rss',False))
+    print(data.get('atom',False))
     if data:
         r = AddEntry(data)
         return r.get_resp()

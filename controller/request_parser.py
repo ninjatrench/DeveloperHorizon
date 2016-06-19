@@ -6,26 +6,28 @@ from controller.bitbucket_issues import BitBucketAPI
 from controller.direct import DirectUrl, DebSummit, UbuntuEvents
 from controller.git import GithubByRepo, GithubByUsername
 from controller.udd import UddByEmail
+from controller.rss import AtomAPI, RssAPI
 from controller.helper import CalendarBuilder, FlaskError, SaveSession
 from controller.db.dbobj import StoreSession
 
 
 # noinspection PyBroadException
 class AddEntry(object):
-    github_by_repo = []
-    github_by_user = []
-    bitbucket = []
-    bugzilla = []
-    direct = None
-    ubuntu_events = False
-    deb_summit = True
-    udd = []
-    gsoc = []
-    items = []
-    do_save = False
 
     def __init__(self, request) -> None:
-        del self.items[:]
+        self.github_by_repo = []
+        self.github_by_user = []
+        self.bitbucket = []
+        self.bugzilla = []
+        self.direct = None
+        self.rss = None
+        self.atom = None
+        self.ubuntu_events = False
+        self.deb_summit = True
+        self.udd = []
+        self.gsoc = []
+        self.items = []
+        self.do_save = False
         """
         FIXME : dual entry problem
         Fixed in #2 :)
@@ -40,9 +42,12 @@ class AddEntry(object):
                                          github_by_user=self.github_by_user,
                                          bitbucket=self.bitbucket,
                                          bugzilla=self.bugzilla,
-                                         direct=self.direct, ubuntu_events=self.ubuntu_events,
+                                         direct=self.direct,
+                                         ubuntu_events=self.ubuntu_events,
                                          deb_summit=self.deb_summit,
-                                         udd=self.udd).save()
+                                         udd=self.udd,
+                                         rss=self.rss,
+                                         atom=self.atom).save()
 
                 return Response(response=json.dumps({'Success': True, 'Session_id': session_id}), status=200,
                                 content_type='application/json',
@@ -53,7 +58,7 @@ class AddEntry(object):
                 r = CalendarBuilder(self.items)
                 resp = r.main()
                 response = make_response(resp)
-                response.headers["Content-Disposition"] = "attachment; filename=calendar.ical"
+                response.headers["Content-Disposition"] = "attachment; filename=calendar.ics"
                 return response
 
         except Exception as e:
@@ -68,6 +73,9 @@ class AddEntry(object):
             self.bitbucket = self.request.get("bitbucket", False)
             self.bugzilla = self.request.get("bugzilla", False)
             self.direct = self.request.get("direct", False)
+            self.rss = self.request.get("rss", False)
+            self.atom = self.request.get("atom", False)
+
             """
             Dirty Fix for blank remote iCal URL
             """
@@ -100,6 +108,8 @@ class AddEntry(object):
             self.items.append(DebSummit().main())
         if self.udd:
             self.items.append(UddByEmail(emails=self.udd).main())
+        #if self.rss:
+         #   self.items.append(RssAPI)
 
 
 class GetEntry(object):
@@ -143,7 +153,7 @@ class GetDownload(object):
             self.build_resp()
             resp = CalendarBuilder(self.items).main()
             response = make_response(resp)
-            response.headers["Content-Disposition"] = "attachment; filename=calendar.ical"
+            response.headers["Content-Disposition"] = "attachment; filename=calendar.ics"
             return response
 
         else:

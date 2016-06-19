@@ -4,3 +4,4 @@ multiprocessing
 PyYaml
 PyGithub
 icalendar
+feedparser
