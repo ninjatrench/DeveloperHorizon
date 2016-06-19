@@ -58,6 +58,37 @@
                             </td>
                         </tr>
 
+                      <tr ng-repeat="i in [1,] | filter:searchKey">
+                            <td class=text-center>
+                               <span ng-init="temp = fetch_tableID()">{{temp}}</span>
+
+                            </td>
+                            <td>RSS data source</td>
+                            <td>
+                            <span ng-show="resp.rss">
+                                {{resp.rss}}
+                            </span>
+                            <div class='label label-warning label-arrow label-arrow-left label-arrow-right' ng-show="!resp.rss">Not Added</div>
+
+                            </td>
+                        </tr>
+
+                      <tr ng-repeat="i in [1,] | filter:searchKey">
+                            <td class=text-center>
+                               <span ng-init="temp = fetch_tableID()">{{temp}}</span>
+
+                            </td>
+                            <td>ATOM data source</td>
+                             <td>
+                            <span ng-show="resp.atom">
+                                {{resp.atom}}
+                            </span>
+                            <div class='label label-warning label-arrow label-arrow-left label-arrow-right' ng-show="!resp.atom">Not Added</div>
+
+                            </td>
+                        </tr>
+
+
                         <tr ng-repeat="i in [1,] | filter:searchKey">
                             <td class=text-center>
                                <span ng-init="temp = fetch_tableID()">{{temp}}</span>
@@ -80,6 +111,7 @@
                             <div class='label label-warning label-arrow label-arrow-left label-arrow-right' ng-show="show.ubuntu_events_reject">Not Added</div>
                             </td>
                         </tr>
+
                         <tr ng-repeat="i in [1,] | filter:searchKey">
                             <td class=text-center>
                                        <span ng-init="temp = fetch_tableID()">{{temp}}</span>

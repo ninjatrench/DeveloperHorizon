@@ -81,6 +81,10 @@ class AddEntry(object):
             """
             if not self.direct:
                 self.direct = False
+            if not self.rss:
+                self.rss = False
+            if not self.atom:
+                self.atom = False
 
             self.ubuntu_events = self.request.get("ubuntu_events", False)
             self.deb_summit = self.request.get("deb_summit", False)
@@ -187,3 +191,7 @@ class GetDownload(object):
 
         if self.data.get('udd', False):
             self.items.append(UddByEmail(emails=self.data.get('udd')).main())
+        if self.data.get('rss', False):
+            self.items.append(RssAPI(url=self.data.get('rss')).main())
+        if self.data.get('atom', False):
+            self.items.append(AtomAPI(url=self.data.get('atom')).main())

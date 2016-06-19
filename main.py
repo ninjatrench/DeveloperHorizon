@@ -1,15 +1,14 @@
 __author__ = 'harsh daftary'
-#GSOC 15 and GSOC 16 project
-#GSOC mentor for 2015 - Daniel, Iain
-#GSOC mentor for 2016 - Iain, Bzed
+# GSOC 15 and GSOC 16 project
+# GSOC mentor for 2015 - Daniel, Iain
+# GSOC mentor for 2016 - Iain, Bzed
 import json
 import gc
 from flask import Flask, request, Response, abort, url_for
 from controller.conf import bind_address, bind_port
-from controller.request_parser import AddEntry, GetEntry,GetDownload
+from controller.request_parser import AddEntry, GetEntry, GetDownload
 from controller.helper import FlaskError
 from controller.deb_li_api import json_api
-
 
 app = Flask(__name__, static_url_path='')
 
@@ -32,8 +31,8 @@ def error(something):
 def add():
     gc.collect()
     data = request.get_json(force=True)
-    print(data.get('rss',False))
-    print(data.get('atom',False))
+    print(data.get('rss', False))
+    print(data.get('atom', False))
     if data:
         r = AddEntry(data)
         return r.get_resp()
@@ -78,7 +77,8 @@ def shorten_url():
     else:
         abort(500)
 
+
 if __name__ == '__main__':
     gc.enable()
     app.run(host=bind_address, port=int(bind_port))
-    #aio.run(app,host=bind_address, port=int(bind_port))
+    # aio.run(app,host=bind_address, port=int(bind_port))
