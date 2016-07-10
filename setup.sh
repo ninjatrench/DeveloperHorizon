@@ -24,7 +24,7 @@ pip3 install multiprocessing
 pip3 install PyYaml
 pip3 install PyGithub
 pip3 install icalendar
-
+pip3 install feedparser
 #Extra script needed for async version
 pip3 install aiohttp
 
